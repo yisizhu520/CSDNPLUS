@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+android {
+    defaultPublishConfig "debug"
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+    }
+}
+
+dependencies {
+
+    def gsonVersion = '2.6.2'
+
+    compile "com.google.code.gson:gson:${gsonVersion}"
+
+}

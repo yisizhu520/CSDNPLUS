@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="wang.mogujun.csdnplus.data">
+
+    <application
+        android:allowBackup="true"
+        >
+
+    </application>
+
+</manifest>
