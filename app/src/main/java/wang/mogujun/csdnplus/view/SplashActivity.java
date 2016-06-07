@@ -7,29 +7,30 @@ import com.orhanobut.logger.Logger;
 import javax.inject.Inject;
 
 import wang.mogujun.csdnplus.R;
-import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
-import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
+import wang.mogujun.csdnplus.di.component.DaggerUserComponent;
+import wang.mogujun.csdnplus.di.component.UserComponent;
+import wang.mogujun.csdnplus.di.module.UserModule;
 import wang.mogujun.csdnplus.domain.interactor.DefaultSubscriber;
 import wang.mogujun.csdnplus.domain.interactor.user.LoginUseCase;
 import wang.mogujun.csdnplus.domain.model.CSDNResponse;
 import wang.mogujun.csdnplus.domain.model.UserInfo;
-import wang.mogujun.csdnplus.domain.repository.UserRepository;
 import wang.mogujun.ext.utils.JsonUtils;
 
 public class SplashActivity extends BaseActivity {
 
+    @Inject
     LoginUseCase loginUseCase;
-    @Inject
-    UserRepository userRepository;
-    @Inject
-    ThreadExecutor threadExecutor;
-    @Inject
-    PostExecutionThread postExecutionThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginUseCase = new LoginUseCase(userRepository,threadExecutor,postExecutionThread);
+        //getApplicationComponent().inject(this);
+        UserComponent userComponent = DaggerUserComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .userModule(new UserModule())
+                .build();
+        userComponent.inject(this);
         loginUseCase.setParam("yisizhu520","alusa2406");
         loginUseCase.execute(new DefaultSubscriber<CSDNResponse>(){
             @Override
