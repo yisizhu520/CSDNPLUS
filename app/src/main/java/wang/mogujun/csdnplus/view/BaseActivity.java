@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.di.component.ApplicationComponent;
@@ -51,6 +53,8 @@ public abstract class BaseActivity extends CommonActivity{
         super.onDestroy();
     }
 
-
+    protected EventBus getEventBus(){
+        return getApplicationComponent().eventBus();
+    }
 
 }

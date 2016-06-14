@@ -20,9 +20,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
-import com.hannesdorfmann.mosby.mvp.delegate.ActivityMvpDelegate;
-import com.hannesdorfmann.mosby.mvp.delegate.ActivityMvpDelegateCallback;
-import com.hannesdorfmann.mosby.mvp.delegate.ActivityMvpDelegateImpl;
+import wang.mogujun.uiframework.mvp.delegate.ActivityMvpDelegate;
+import wang.mogujun.uiframework.mvp.delegate.ActivityMvpDelegateCallback;
+import wang.mogujun.uiframework.mvp.delegate.ActivityMvpDelegateImpl;
+
 
 /**
  * An Activity that uses an {@link MvpPresenter} to implement a Model-View-Presenter

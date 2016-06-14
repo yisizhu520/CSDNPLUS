@@ -2,6 +2,8 @@ package wang.mogujun.csdnplus.di.component;
 
 import android.content.Context;
 
+import org.greenrobot.eventbus.EventBus;
+
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -11,6 +13,7 @@ import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
 import wang.mogujun.csdnplus.domain.repository.UserRepository;
 import wang.mogujun.csdnplus.view.BaseActivity;
+import wang.mogujun.csdnplus.view.BaseFragment;
 
 /**
  * Created by WangJun on 2016/6/7.
@@ -21,6 +24,8 @@ public interface ApplicationComponent {
 
     Context context();
 
+    EventBus eventBus();
+
     PostExecutionThread postExecutionThread();
 
     ThreadExecutor threadExecutor();
@@ -28,6 +33,8 @@ public interface ApplicationComponent {
     UserRepository userRepository();
 
     void inject(BaseActivity activity);
+
+    void inject(BaseFragment fragment);
 
 
 }

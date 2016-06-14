@@ -81,6 +81,7 @@ dependencies {
     compile project(':domain')
     compile project(':data')
     compile project(':uiframework')
+    compile project(':uikit')
     compile project(':ext')
 
     compile googleSupportDependencies.appcompatV7
@@ -89,7 +90,11 @@ dependencies {
     compile googleSupportDependencies.recyclerview
     compile googleSupportDependencies.cardview
 
+    compile presentationDependencies.eventBus
+
+    apt presentationDependencies.butterKnifeCompiler
     apt presentationDependencies.daggerCompiler
+
     compile presentationDependencies.dagger
     compile presentationDependencies.butterKnife
     compile presentationDependencies.rxJava

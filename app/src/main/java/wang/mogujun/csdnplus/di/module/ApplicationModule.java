@@ -2,6 +2,8 @@ package wang.mogujun.csdnplus.di.module;
 
 import android.content.Context;
 
+import org.greenrobot.eventbus.EventBus;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -34,6 +36,17 @@ public class ApplicationModule {
 
     @Singleton
     @Provides
+    EventBus provideEventBus(){
+        //TODO 根据BuildConfig.DEBUG来设置
+        return EventBus
+                .builder()
+                .throwSubscriberException(true)
+                .logNoSubscriberMessages(true)
+                .build();
+    }
+
+    @Singleton
+    @Provides
     ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
         return jobExecutor;
     }
@@ -49,6 +62,8 @@ public class ApplicationModule {
     UserRepository provideUserRepository(UserDataRepository userDataRepository) {
         return userDataRepository;
     }
+
+
 
 
 

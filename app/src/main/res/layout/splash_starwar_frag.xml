@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/splash_starwar_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/splash_starwar_bg_black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <com.hanks.htextview.HTextView
+            android:id="@+id/splash_starwar_title"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/spacing_huge"
+            android:gravity="center"
+            tool:text="@string/csdn"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_splash_title"
+            android:textStyle="bold"
+             />
+
+        <wang.mogujun.uikit.trendtextview.TrendTextView
+            android:id="@+id/splash_starwar_slogan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:gravity="center"
+            tool:text="@string/slogan"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_splash_sub_title" />
+
+    </LinearLayout>
+</FrameLayout>

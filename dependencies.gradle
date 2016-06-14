@@ -18,6 +18,14 @@ ext {
     //google support
     googleSupportVersion = "23.4.0"
 
+    //UI
+    starwarsVersion = '0.1.1'
+    htextVersion = '0.1.3'
+    materialEditTextVersion = '2.1.4'
+    processButtonVersion = '1.0.4'
+    avloadingVersion = '1.0.5'
+    smoothProgressBarVersion = '1.1.0'
+
     //Libraries
     daggerVersion = '2.4'
     butterKnifeVersion = '8.0.1'
@@ -28,6 +36,7 @@ ext {
     okHttpVersion = '3.3.1'
     retrofitVersion = '2.0.2'
     androidAnnotationsVersion = '21.0.3'
+    eventBusVersion = '3.0.0'
 
     //Development
     leakCanaryVersion = '1.3.1'
@@ -50,8 +59,8 @@ ext {
     ]
 
     domainTestDependencies = [
-            junit:              "junit:junit:${jUnitVersion}",
-            mockito:            "org.mockito:mockito-core:${mockitoVersion}",
+            junit  : "junit:junit:${jUnitVersion}",
+            mockito: "org.mockito:mockito-core:${mockitoVersion}",
     ]
 
     dataDependencies = [
@@ -70,10 +79,10 @@ ext {
     ]
 
     dataTestDependencies = [
-            junit:              "junit:junit:${jUnitVersion}",
-            assertj:            "org.assertj:assertj-core:${assertJVersion}",
-            mockito:            "org.mockito:mockito-core:${mockitoVersion}",
-            robolectric:        "org.robolectric:robolectric:${robolectricVersion}",
+            junit      : "junit:junit:${jUnitVersion}",
+            assertj    : "org.assertj:assertj-core:${assertJVersion}",
+            mockito    : "org.mockito:mockito-core:${mockitoVersion}",
+            robolectric: "org.robolectric:robolectric:${robolectricVersion}",
     ]
 
     googleSupportDependencies = [
@@ -88,18 +97,30 @@ ext {
             daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger            : "com.google.dagger:dagger:${daggerVersion}",
             butterKnife       : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            butterKnifeCompiler: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
             rxJava            : "io.reactivex:rxjava:${rxJavaVersion}",
             rxAndroid         : "io.reactivex:rxandroid:${rxAndroidVersion}",
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}"
+            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
+            eventBus          : "org.greenrobot:eventbus:${eventBusVersion}",
+
+
+    ]
+
+    uiDependencies = [
+            starwarstiles    : "com.yalantis:starwarstiles:${starwarsVersion}",
+            htext            : "hanks.xyz:htextview-library:${htextVersion}",
+            materialEditText : "com.rengwuxian.materialedittext:library:${materialEditTextVersion}",
+            avloading        : "com.wang.avi:library:${avloadingVersion}",
+            smoothProgressBar: "com.github.castorflex.smoothprogressbar:library:${smoothProgressBarVersion}",
     ]
 
     presentationTestDependencies = [
-            mockito:            "org.mockito:mockito-core:${mockitoVersion}",
-            dexmaker:           "com.google.dexmaker:dexmaker:${dexmakerVersion}",
-            dexmakerMockito:    "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
-            espresso:           "com.android.support.test.espresso:espresso-core:${espressoVersion}",
-            testingSupportLib:  "com.android.support.test:testing-support-lib:${testingSupportLibVersion}",
+            mockito          : "org.mockito:mockito-core:${mockitoVersion}",
+            dexmaker         : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
+            dexmakerMockito  : "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
+            espresso         : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            testingSupportLib: "com.android.support.test:testing-support-lib:${testingSupportLibVersion}",
     ]
 
     debugDependencies = [
