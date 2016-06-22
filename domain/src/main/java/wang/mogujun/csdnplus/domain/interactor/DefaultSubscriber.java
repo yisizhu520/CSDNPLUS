@@ -25,7 +25,11 @@ public class DefaultSubscriber<T> extends rx.Subscriber<T> {
 
   @Override public void onError(Throwable e) {
     // no-op by default.
+    onError((Exception)e);
   }
+
+  public void onError(Exception e){}
+
 
   @Override public void onNext(T t) {
     // no-op by default.

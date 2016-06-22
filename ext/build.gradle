@@ -23,8 +23,10 @@ android {
 
 dependencies {
 
-    def gsonVersion = '2.6.2'
+    def gsonVersion = rootProject.ext.gsonVersion
+    def googleSupportDependencies = rootProject.ext.googleSupportDependencies
 
     compile "com.google.code.gson:gson:${gsonVersion}"
+    compile googleSupportDependencies.design
 
 }

@@ -16,6 +16,8 @@
 
 package wang.mogujun.uiframework.mvp;
 
+import android.content.Context;
+
 /**
  * The root view interface for every mvp view
  *
@@ -23,4 +25,7 @@ package wang.mogujun.uiframework.mvp;
  * @since 1.0.0
  */
 public interface MvpView {
+
+    Context getContext();
+
 }

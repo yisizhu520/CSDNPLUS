@@ -10,4 +10,12 @@
     <string name="title_detail">详情</string>
     <string name="topic_desc" formatted="false">更多%s话题：%d篇</string>
 
+    <string name="expired_auto_login">过期了，自动登录中(*＾-＾*)</string>
+    <string name="login_hint_account">帐号</string>
+    <string name="login_hint_password">密码</string>
+    <string name="login_btn_text_normal">登录</string>
+    <string name="login_btn_text_error">登录失败=_=</string>
+    <string name="login_btn_text_progress">登录中…(＾－＾)</string>
+    <string name="login_btn_text_success">登录成功\(^o^)/</string>
+
 </resources>

@@ -7,6 +7,10 @@ public class MvpBasePresenter <V extends MvpView> implements MvpPresenter<V> {
 
     protected V mvpView;
 
+    public V getView(){
+        return mvpView;
+    }
+
     @Override
     public void attachView(V view) {
         mvpView = view;

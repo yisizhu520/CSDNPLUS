@@ -15,6 +15,7 @@ import wang.mogujun.csdnplus.data.repository.UserDataRepository;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
 import wang.mogujun.csdnplus.domain.repository.UserRepository;
+import wang.mogujun.csdnplus.view.CSDNNavigator;
 
 /**
  * Created by WangJun on 2016/6/7.
@@ -63,7 +64,11 @@ public class ApplicationModule {
         return userDataRepository;
     }
 
-
+    @Singleton
+    @Provides
+    CSDNNavigator provideNavogator() {
+        return new CSDNNavigator();
+    }
 
 
 

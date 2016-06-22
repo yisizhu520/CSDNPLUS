@@ -1,8 +1,8 @@
 package wang.mogujun.csdnplus.view;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import wang.mogujun.csdnplus.R;
+import wang.mogujun.csdnplus.data.cache.LoginPrefs;
 import wang.mogujun.csdnplus.domain.interactor.user.LoginUseCase;
 import wang.mogujun.csdnplus.event.SplashFinishedEvent;
 
@@ -30,7 +31,6 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getEventBus().register(this);
-        splashContainer.setAlpha(0.8f);
         //getApplicationComponent().inject(this);
 //        UserComponent userComponent = DaggerUserComponent.builder()
 //                .applicationComponent(getApplicationComponent())
@@ -64,30 +64,37 @@ public class SplashActivity extends BaseActivity {
 
     @Subscribe
     public void processTransition(SplashFinishedEvent event) {
-        Toast.makeText(this, "processTransition", Toast.LENGTH_LONG).show();
-//        ProfileManager.getUC(LoginPrefs.getUserName());
-//        if(TextUtils.isEmpty(LoginPrefs.getSessionId())){//如果未登录
-//            goLogin();
-//        }else{
-//            try {
-//                //如果过期了，则去自动登录
-//                long expire = Long.parseLong(LoginPrefs.getSessionExpired());
-//                if(expire < System.currentTimeMillis()){
-//                    TipUtil.showToast("过期了，自动登录中");
-//                    //TODO auto login
-//                    goLogin();
-//                }else{
-//                    //goLogin();
-//                    goMain();
-//                    // goMain();
-//                }
-//            }catch (NumberFormatException e){
-//                goLogin();
-//            }
-//
-//        }
+        if(TextUtils.isEmpty(LoginPrefs.getSessionId())){//如果未登录
+            goLogin();
+        }else{
+            try {
+                //如果过期了，则去自动登录
+                long expire = Long.parseLong(LoginPrefs.getSessionExpired());
+                if(expire < System.currentTimeMillis()){
+                    showToast(R.string.expired_auto_login);
+                    //TODO auto login
+                    goLogin();
+                }else{
+                    //goLogin();
+                    goMain();
+                }
+            }catch (NumberFormatException e){
+                goLogin();
+            }
+
+        }
 
 
+    }
+
+    void goLogin(){
+        finish();
+        mNavigator.navigateToLogin(this);
+    }
+
+    void goMain(){
+        finish();
+        mNavigator.navigateToMain(this);
     }
 
     @Override
