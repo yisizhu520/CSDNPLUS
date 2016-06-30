@@ -1,4 +1,4 @@
-package wang.mogujun.csdnplus.view;
+package wang.mogujun.csdnplus.view.main;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +13,7 @@ import wang.mogujun.csdnplus.R;
 import wang.mogujun.csdnplus.data.cache.LoginPrefs;
 import wang.mogujun.csdnplus.domain.interactor.user.LoginUseCase;
 import wang.mogujun.csdnplus.event.SplashFinishedEvent;
+import wang.mogujun.csdnplus.view.BaseActivity;
 
 public class SplashActivity extends BaseActivity {
 

@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import dagger.Module;
 import dagger.Provides;
-import wang.mogujun.csdnplus.di.PerActivity;
+import wang.mogujun.csdnplus.di.PerFragment;
 
 /**
  * Created by WangJun on 2016/6/7.
@@ -18,7 +18,7 @@ public class ActivityModule {
         this.mActivity = activity;
     }
 
-    @PerActivity
+    @PerFragment
     @Provides
     Activity activity() {
         return this.mActivity;

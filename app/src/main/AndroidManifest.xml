@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.user.LoginActivity">
         </activity>
-        <activity android:name=".view.SplashActivity">
+        <activity android:name=".view.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

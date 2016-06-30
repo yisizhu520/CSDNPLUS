@@ -17,9 +17,6 @@ public class LoginUseCase extends UseCase<CSDNResponse> {
     @Inject
     public LoginUseCase(UserRepository userRepository, ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
         super(threadExecutor, postExecutionThread);
-        System.out.print("userRepository--"+userRepository);
-        System.out.print("userRepository--"+threadExecutor);
-        System.out.print("userRepository--"+postExecutionThread);
         this.userRepository = userRepository;
     }
 

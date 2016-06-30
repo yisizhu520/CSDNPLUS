@@ -17,5 +17,7 @@
     <string name="login_btn_text_error">登录失败=_=</string>
     <string name="login_btn_text_progress">登录中…(＾－＾)</string>
     <string name="login_btn_text_success">登录成功\(^o^)/</string>
+    <string name="night_mode">夜间模式</string>
+    <string name="geeknews">头条</string>
 
 </resources>

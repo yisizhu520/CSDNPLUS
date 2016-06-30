@@ -26,6 +26,7 @@ public abstract class BaseFragment extends CommonFragment {
 
     protected View rootView;
 
+
     private Unbinder unbinder;
 
     @Inject

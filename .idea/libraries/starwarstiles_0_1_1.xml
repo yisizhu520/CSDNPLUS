@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="starwarstiles-0.1.1">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.yalantis/starwarstiles/0.1.1/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.yalantis/starwarstiles/0.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.yalantis/starwarstiles/0.1.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.yalantis/starwarstiles/0.1.1/e8d6236978d4562734e4d6c6315f52dd1f44ac00/starwarstiles-0.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

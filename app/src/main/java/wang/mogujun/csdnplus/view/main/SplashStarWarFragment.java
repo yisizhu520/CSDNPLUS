@@ -1,4 +1,4 @@
-package wang.mogujun.csdnplus.view;
+package wang.mogujun.csdnplus.view.main;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -15,6 +15,7 @@ import butterknife.BindString;
 import butterknife.BindView;
 import wang.mogujun.csdnplus.R;
 import wang.mogujun.csdnplus.event.SplashFinishedEvent;
+import wang.mogujun.csdnplus.view.BaseFragment;
 import wang.mogujun.uikit.particle.ParticleSystemRenderer;
 import wang.mogujun.uikit.trendtextview.TrendTextView;
 import wang.mogujun.uikit.trendtextview.TrendTextViewListener;

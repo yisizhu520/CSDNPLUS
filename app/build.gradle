@@ -101,6 +101,12 @@ dependencies {
     compile presentationDependencies.rxAndroid
     provided presentationDependencies.javaxAnnotation
     compile presentationDependencies.androidAnnotations
+    compile presentationDependencies.glide
+    compile presentationDependencies.glideTransform
+    //font
+    compile presentationDependencies.iconicsCore
+    compile presentationDependencies.fontGMI
+    compile presentationDependencies.fontMDI
 
     compile debugDependencies.logger
 

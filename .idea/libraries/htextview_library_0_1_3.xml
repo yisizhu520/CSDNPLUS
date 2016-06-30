@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="htextview-library-0.1.3">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/hanks.xyz/htextview-library/0.1.3/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/hanks.xyz/htextview-library/0.1.3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/hanks.xyz/htextview-library/0.1.3/7862b3df5fb174d765126045a523cfa4e597f920/htextview-library-0.1.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

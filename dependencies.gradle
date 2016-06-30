@@ -25,6 +25,9 @@ ext {
     processButtonVersion = '1.0.4'
     avloadingVersion = '1.0.5'
     smoothProgressBarVersion = '1.1.0'
+    roundedImageVersion = '2.2.1'
+    ultraPtrVersion = '1.0.11'
+    BRVAHVersion = 'v1.8.5'
 
     //Libraries
     daggerVersion = '2.4'
@@ -37,6 +40,13 @@ ext {
     retrofitVersion = '2.0.2'
     androidAnnotationsVersion = '21.0.3'
     eventBusVersion = '3.0.0'
+    glideVersion = '3.7.0'
+    glideTransVersion = '2.0.0'
+
+    //font
+    iconicsCoreVersion = '2.6.6@aar'
+    fontGMIVersion = '2.2.0.1.original@aar'
+    fontMDIVersion = '2.2.0.1@aar'
 
     //Development
     leakCanaryVersion = '1.3.1'
@@ -103,7 +113,12 @@ ext {
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
             eventBus          : "org.greenrobot:eventbus:${eventBusVersion}",
-
+            glide             : "com.github.bumptech.glide:glide:${glideVersion}",
+            glideTransform    : "jp.wasabeef:glide-transformations:${glideTransVersion}",
+            //font
+            iconicsCore       : "com.mikepenz:iconics-core:${iconicsCoreVersion}",
+            fontGMI           : "com.mikepenz:google-material-typeface:${fontGMIVersion}",
+            fontMDI           : "com.mikepenz:material-design-iconic-typeface:${fontMDIVersion}",
 
     ]
 
@@ -114,6 +129,9 @@ ext {
             avloading        : "com.wang.avi:library:${avloadingVersion}",
             smoothProgressBar: "com.github.castorflex.smoothprogressbar:library:${smoothProgressBarVersion}",
             processButton    : "com.github.dmytrodanylyk.android-process-button:library:${processButtonVersion}",
+            roundedImageView : "com.makeramen:roundedimageview:${roundedImageVersion}",
+            ultraPtr         : "in.srain.cube:ultra-ptr:${ultraPtrVersion}",
+            BRVAH            : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${BRVAHVersion}"
     ]
 
     presentationTestDependencies = [

@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.view.LayoutInflaterCompat;
+
+import com.mikepenz.iconics.context.IconicsLayoutInflater;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -28,7 +31,8 @@ public abstract class BaseActivity extends CommonActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        //LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
+        //TODO 每个Activity都需要这么做么？会不会对性能有影响？
+        LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
         getApplicationComponent().inject(this);
