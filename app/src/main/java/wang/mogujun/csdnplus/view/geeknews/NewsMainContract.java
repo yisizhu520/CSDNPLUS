@@ -23,7 +23,7 @@ public class NewsMainContract {
 
     }
 
-    abstract class Presenter extends MvpBasePresenter<View>{
+    static abstract class Presenter extends MvpBasePresenter<View>{
         public abstract void getNewsColumns();
     }
 

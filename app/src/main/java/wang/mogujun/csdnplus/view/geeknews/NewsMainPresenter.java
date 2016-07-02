@@ -51,6 +51,7 @@ public class NewsMainPresenter extends NewsMainContract.Presenter {
             protected void onErrorMsg(String errorMsg) {
                 super.onErrorMsg(errorMsg);
                 getView().showError(errorMsg);
+                getView().hideLoading();
             }
         });
     }

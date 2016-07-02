@@ -21,10 +21,17 @@ public class CSDNApplication extends Application {
 
     private ApplicationComponent mApplicationComponent;
 
+    private static CSDNApplication mInstance;
+
+    public static CSDNApplication getInstance(){
+        return mInstance;
+    }
+
 
     @Override
     public void onCreate() {
         super.onCreate();
+        mInstance = this;
         //TODO 在ext包里构建基础preference
         LoginPrefs.init(this);
         UserDetailPrefs.init(this);

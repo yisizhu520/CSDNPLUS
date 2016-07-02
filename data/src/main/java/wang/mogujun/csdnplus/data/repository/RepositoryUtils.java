@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.orhanobut.logger.Logger;
 
+import java.lang.reflect.Type;
+
 import rx.Observable;
 import wang.mogujun.csdnplus.data.exception.NetworkConnectionException;
 import wang.mogujun.csdnplus.data.exception.ResponseException;
@@ -36,5 +38,17 @@ public class RepositoryUtils {
     }
 
 
+    public static <T> Observable<T> extractData(Observable<CSDNResponse> observable, Type type) {
+        return observable.flatMap(response -> {
+            if (response == null) {
+                return Observable.error(new NetworkConnectionException());
+            } else if (response.getCode() == ResponseException.CODE_SUCCESS) {
+                return Observable.just(mGson.fromJson(mGson.toJson(response.getData()), type));
+            } else {
+                Logger.e("response error--code:%s,message:s",response.getCode(),response.getMessage());
+                return Observable.error(new ResponseException(response));
+            }
+        });
+    }
 
 }

@@ -11,10 +11,12 @@ import wang.mogujun.csdnplus.di.module.ApiModule;
 import wang.mogujun.csdnplus.di.module.ApplicationModule;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
+import wang.mogujun.csdnplus.domain.repository.NewsRepository;
 import wang.mogujun.csdnplus.domain.repository.UserRepository;
 import wang.mogujun.csdnplus.view.BaseActivity;
 import wang.mogujun.csdnplus.view.BaseFragment;
 import wang.mogujun.csdnplus.view.CSDNNavigator;
+import wang.mogujun.csdnplus.view.geeknews.NewsLatestAdapter;
 
 /**
  * Created by WangJun on 2016/6/7.
@@ -33,11 +35,16 @@ public interface ApplicationComponent {
 
     UserRepository userRepository();
 
+    NewsRepository newsRepository();
+
     CSDNNavigator navigator();
 
     void inject(BaseActivity activity);
 
     void inject(BaseFragment fragment);
+
+    //TODO 抽象出BaseAdapter
+    void inject(NewsLatestAdapter adapter);
 
 
 }

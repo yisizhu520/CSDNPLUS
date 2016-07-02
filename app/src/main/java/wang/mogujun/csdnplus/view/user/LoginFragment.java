@@ -73,11 +73,7 @@ public class LoginFragment extends
         return loginPresenter;
     }
 
-    static final ButterKnife.Setter<View, Boolean> ENABLED = new ButterKnife.Setter<View, Boolean>() {
-        @Override public void set(View view, Boolean value, int index) {
-            view.setEnabled(value);
-        }
-    };
+    static final ButterKnife.Setter<View, Boolean> ENABLED = (view, value, index) -> view.setEnabled(value);
 
     @Override
     public Context getContext(){

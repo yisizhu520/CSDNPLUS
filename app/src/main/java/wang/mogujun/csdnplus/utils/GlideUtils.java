@@ -3,9 +3,11 @@ package wang.mogujun.csdnplus.utils;
 import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.orhanobut.logger.Logger;
-import wang.mogujun.csdnplus.R;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import wang.mogujun.csdnplus.R;
 
 
@@ -51,8 +53,8 @@ public class GlideUtils {
                     .load(url)
                     .bitmapTransform(new CropCircleTransformation(view.getContext()))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.mipmap.default_avatar_img)
-                    .error(R.mipmap.default_avatar_img)
+                    .placeholder(R.drawable.default_avatar_img)
+                    .error(R.drawable.default_avatar_img)
                     .crossFade()
                     .into(view);
         } catch (Exception e) {

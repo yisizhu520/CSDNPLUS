@@ -26,7 +26,8 @@ public class GetColumnNewsUseCase extends UseCase<List<NewsListInfo>> {
 
     @Override
     protected Observable<List<NewsListInfo>> buildUseCaseObservable() {
-        return mNewsRepository.getColumnNews();
+        //TODO 填参数
+        return mNewsRepository.getColumnNews(1,13);
     }
 
 }

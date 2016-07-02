@@ -20,7 +20,11 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.R;
+import wang.mogujun.csdnplus.di.component.DaggerNewsComponent;
+import wang.mogujun.csdnplus.di.component.NewsComponent;
+import wang.mogujun.csdnplus.di.module.ActivityModule;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsColumn;
 import wang.mogujun.csdnplus.event.HeadlineTabReselectedEvent;
 import wang.mogujun.csdnplus.view.MvpBaseFragment;
@@ -74,19 +78,25 @@ public class NewsMainFragment extends
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        NewsComponent newsComponent = DaggerNewsComponent
+                .builder()
+                .applicationComponent(CSDNApplication.getInstance().getApplicationComponent())
+                .activityModule(new ActivityModule(getActivity()))
+                .build();
+        newsComponent.inject(this);
     }
 
 
     @Override
     protected void initViews() {
+
         mToolbar.setTitle(R.string.geeknews);
             mToolbar.setNavigationOnClickListener(v -> {
                 //FIXME 改成eventbus传输
                 ((MainActivity) getActivity()).toggleMenu();
             });
-        mLoadingView.setVisibility(View.GONE);
 //        if(mPagerAdapter == null){
-        presenter.getNewsColumns();
+        newsMainPresenter.getNewsColumns();
 //        }else{
 //
 //            mViewPager.setAdapter(mPagerAdapter);
@@ -112,8 +122,13 @@ public class NewsMainFragment extends
         mLoadingView.setVisibility(View.VISIBLE);
     }
 
-    public void showError(String msg) {
+    @Override
+    public void hideLoading() {
         mLoadingView.setVisibility(View.GONE);
+    }
+
+    public void showError(String msg) {
+//        mLoadingView.setVisibility(View.GONE);
         TipUtils.showSnack(getActivity(), msg);
     }
 

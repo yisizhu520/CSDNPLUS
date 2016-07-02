@@ -29,7 +29,7 @@ public class NewsListContract {
 
     }
 
-    abstract class Presenter extends MvpBasePresenter<View> {
+    static abstract class Presenter extends MvpBasePresenter<View> {
 
         abstract void loadNewData();
 

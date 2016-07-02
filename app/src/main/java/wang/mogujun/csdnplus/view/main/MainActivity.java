@@ -13,11 +13,13 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import wang.mogujun.csdnplus.R;
+import wang.mogujun.csdnplus.di.HasNewsComponent;
+import wang.mogujun.csdnplus.di.component.NewsComponent;
 import wang.mogujun.csdnplus.event.DrawerItemClickEvent;
 import wang.mogujun.csdnplus.view.BaseActivity;
 import wang.mogujun.csdnplus.view.geeknews.NewsMainFragment;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements HasNewsComponent{
 
     @BindView(R.id.main_content_container)
     FrameLayout mMainContentContainer;
@@ -159,4 +161,8 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    @Override
+    public NewsComponent getNewsComponent() {
+        return null;
+    }
 }

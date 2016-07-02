@@ -19,7 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.stevenmoon.csdnplus.util.GlideUtil;
+import wang.mogujun.csdnplus.utils.GlideUtils;
+
 
 /**
  * Created by WangJun on 2016/3/5.

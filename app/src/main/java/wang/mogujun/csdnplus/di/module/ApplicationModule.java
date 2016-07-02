@@ -11,9 +11,11 @@ import dagger.Provides;
 import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.UIThread;
 import wang.mogujun.csdnplus.data.executor.JobExecutor;
+import wang.mogujun.csdnplus.data.repository.NewsDataRepository;
 import wang.mogujun.csdnplus.data.repository.UserDataRepository;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
+import wang.mogujun.csdnplus.domain.repository.NewsRepository;
 import wang.mogujun.csdnplus.domain.repository.UserRepository;
 import wang.mogujun.csdnplus.view.CSDNNavigator;
 
@@ -60,15 +62,23 @@ public class ApplicationModule {
 
     @Singleton
     @Provides
+    CSDNNavigator provideNavigator() {
+        return new CSDNNavigator();
+    }
+
+    @Singleton
+    @Provides
     UserRepository provideUserRepository(UserDataRepository userDataRepository) {
         return userDataRepository;
     }
 
     @Singleton
     @Provides
-    CSDNNavigator provideNavogator() {
-        return new CSDNNavigator();
+    NewsRepository provideNewRepository(NewsDataRepository newsDataRepository) {
+        return newsDataRepository;
     }
+
+
 
 
 

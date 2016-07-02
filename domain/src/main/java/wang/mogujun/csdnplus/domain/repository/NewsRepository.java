@@ -16,7 +16,7 @@ public interface NewsRepository {
 
     Observable<List<NewsLatestListInfo>> getLatestNews(String lastId,String direction,int size,int activities_count);
 
-    Observable<List<NewsListInfo>> getColumnNews();
+    Observable<List<NewsListInfo>> getColumnNews(int page, int comid);
 
 
 }

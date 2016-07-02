@@ -53,8 +53,14 @@ public abstract class BaseFragment extends CommonFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(getContentViewId(),container,false);
         unbinder = ButterKnife.bind(this, rootView);
-        initViews();
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initViews();
+
     }
 
     @Override
