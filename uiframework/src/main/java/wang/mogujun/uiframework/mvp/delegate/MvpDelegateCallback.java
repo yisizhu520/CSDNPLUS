@@ -17,7 +17,6 @@
 package wang.mogujun.uiframework.mvp.delegate;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 
 import wang.mogujun.uiframework.mvp.MvpPresenter;
 import wang.mogujun.uiframework.mvp.MvpView;
@@ -42,7 +41,6 @@ public interface MvpDelegateCallback<V extends MvpView, P extends MvpPresenter<V
    *
    * @return the created presenter instance
    */
-  @NonNull
   public P createPresenter();
 
   /**

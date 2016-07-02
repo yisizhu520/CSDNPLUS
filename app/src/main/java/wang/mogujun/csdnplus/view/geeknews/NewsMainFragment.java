@@ -1,5 +1,7 @@
 package wang.mogujun.csdnplus.view.geeknews;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +13,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.orhanobut.logger.Logger;
 
 import java.util.HashMap;
@@ -61,8 +65,10 @@ public class NewsMainFragment extends
             if (position == 0) {//TODO 如果是最近头条，特殊处理
                 f = NewsLatestListFragment.newInstance();
             } else {
-                int comid = mPagerAdapter.getColumns().get(position).getId();
-                f = NewsListFragment.newInstance(comid);
+                //FIXME 更改过来
+//                int comid = mPagerAdapter.getColumns().get(position).getId();
+//                f = NewsListFragment.newInstance(comid);
+                f = NewsLatestListFragment.newInstance();
             }
             mFragmentMap.put(position, f);
         }
@@ -86,24 +92,21 @@ public class NewsMainFragment extends
         newsComponent.inject(this);
     }
 
-
     @Override
-    protected void initViews() {
-
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         mToolbar.setTitle(R.string.geeknews);
-            mToolbar.setNavigationOnClickListener(v -> {
-                //FIXME 改成eventbus传输
-                ((MainActivity) getActivity()).toggleMenu();
-            });
-//        if(mPagerAdapter == null){
+        Drawable menuDra = new IconicsDrawable(getActivity())
+                //FIXME 主题相关
+                .color(Color.WHITE)
+                .icon(MaterialDesignIconic.Icon.gmi_menu)
+                .sizeRes(R.dimen.nav_icon_size);
+        mToolbar.setNavigationIcon(menuDra);
+        mToolbar.setNavigationOnClickListener(v -> {
+            //FIXME 改成eventbus传输
+            ((MainActivity) getActivity()).toggleMenu();
+        });
         newsMainPresenter.getNewsColumns();
-//        }else{
-//
-//            mViewPager.setAdapter(mPagerAdapter);
-//           // mViewPager.setOffscreenPageLimit(columns.size());
-//            mTabLayout.setupWithViewPager(mViewPager);
-//        }
-
     }
 
 
@@ -161,7 +164,6 @@ public class NewsMainFragment extends
             }
         });
     }
-
 
 
     class NewsPagerAdapter extends FragmentPagerAdapter {

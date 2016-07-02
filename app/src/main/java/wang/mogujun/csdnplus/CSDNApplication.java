@@ -58,7 +58,7 @@ public class CSDNApplication extends Application {
     private void initLogger(){
         Logger
                 .init(DEFAULT_LOG_TAG)                 // default PRETTYLOGGER or use just init()
-                .methodCount(4)                 // default 2
+                .methodCount(8)                 // default 2
                 .hideThreadInfo()               // default shown
                 .logLevel(LogLevel.FULL)        // default LogLevel.FULL
                 .methodOffset(4)                // default 0

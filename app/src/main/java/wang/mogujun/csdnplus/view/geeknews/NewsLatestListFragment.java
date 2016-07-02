@@ -27,7 +27,6 @@ import wang.mogujun.csdnplus.di.module.ActivityModule;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsLatestListInfo;
 import wang.mogujun.csdnplus.event.NewsItemClickEvent;
 import wang.mogujun.csdnplus.view.LazyBaseFragment;
-import wang.mogujun.ext.utils.DimenUtils;
 import wang.mogujun.ext.utils.TipUtils;
 import wang.mogujun.uikit.BorderDividerItemDecoration;
 
@@ -77,10 +76,12 @@ public class NewsLatestListFragment extends
     }
 
     private void initRefreshView() {
-        final StoreHouseHeader header = new StoreHouseHeader(getContext());
-        header.setPadding(0, DimenUtils.dp2px(getActivity(),16), 0, 0);
-        header.initWithString("CSDNPLUS");
+        final StoreHouseHeader header = new StoreHouseHeader(getActivity());
+        //header.setBackgroundColor(Color.BLACK);
+        header.setPadding(0, mDividerBorderWidth, 0, mDividerBorderWidth);
+        header.initWithString(getString(R.string.app_name));
         mPtrFrame.setHeaderView(header);
+        mPtrFrame.addPtrUIHandler(header);
         mPtrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -89,7 +90,7 @@ public class NewsLatestListFragment extends
 
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, mDataRv, header);
             }
         });
     }

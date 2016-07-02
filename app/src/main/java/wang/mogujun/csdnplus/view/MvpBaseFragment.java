@@ -82,8 +82,8 @@ public abstract  class MvpBaseFragment<V extends MvpView, P extends MvpPresenter
     }
 
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        getMvpDelegate().onViewCreated(view, savedInstanceState);
         super.onViewCreated(view, savedInstanceState);
+        getMvpDelegate().onViewCreated(view, savedInstanceState);
     }
 
     @Override public void onDestroyView() {

@@ -1,6 +1,7 @@
 package wang.mogujun.csdnplus.view;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
@@ -32,9 +33,9 @@ public abstract class BaseFragment extends CommonFragment {
     @Inject
     protected CSDNNavigator mNavigator;
 
-    protected abstract void initViews() ;
+    protected void initViews(){} ;
 
-    protected abstract int getContentViewId();
+    protected abstract @LayoutRes int getContentViewId();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,8 +66,8 @@ public abstract class BaseFragment extends CommonFragment {
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
         unbinder.unbind();
+        super.onDestroyView();
     }
 
     @Override

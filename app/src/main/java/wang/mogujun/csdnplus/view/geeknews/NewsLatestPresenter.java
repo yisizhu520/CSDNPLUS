@@ -42,6 +42,7 @@ public class NewsLatestPresenter extends NewsLatestListContract.Presenter {
             @Override
             protected void onErrorMsg(String errorMsg) {
                 super.onErrorMsg(errorMsg);
+                getView().hideLoading();
             }
 
             @Override

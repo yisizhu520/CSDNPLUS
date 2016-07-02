@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import java.util.List;
 
+import wang.mogujun.csdnplus.R;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsListInfo;
 import wang.mogujun.csdnplus.view.LazyBaseFragment;
 
@@ -45,7 +46,7 @@ public class NewsListFragment extends
 
     @Override
     protected int getContentViewId() {
-        return 0;
+        return R.layout.layout_common_refresh_list;
     }
 
 

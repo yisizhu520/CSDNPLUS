@@ -59,7 +59,7 @@ public class SplashStarWarFragment extends BaseFragment implements TrendTextView
     @Override
     protected void initViews() {
         initBG();
-        mSloganTV.animateText(mSloganStr);
+        mSloganTV.animateText("CSDN");//TODO 记得改回标语
         //FIXME 会出现内存泄漏的情况
         mSloganTV.setOnTrendTextFinishListener(this);
     }
