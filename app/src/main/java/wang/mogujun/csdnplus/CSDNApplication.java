@@ -10,6 +10,8 @@ import wang.mogujun.csdnplus.data.cache.LoginPrefs;
 import wang.mogujun.csdnplus.data.cache.UserDetailPrefs;
 import wang.mogujun.csdnplus.di.component.ApplicationComponent;
 import wang.mogujun.csdnplus.di.component.DaggerApplicationComponent;
+import wang.mogujun.csdnplus.di.component.DaggerNewsComponent;
+import wang.mogujun.csdnplus.di.component.NewsComponent;
 import wang.mogujun.csdnplus.di.module.ApplicationModule;
 
 /**
@@ -69,7 +71,12 @@ public class CSDNApplication extends Application {
         return mApplicationComponent;
     }
 
-
+    public NewsComponent getNewsComponent(){
+        return DaggerNewsComponent
+                .builder()
+                .applicationComponent(getApplicationComponent())
+                .build();
+    }
 
 
 }

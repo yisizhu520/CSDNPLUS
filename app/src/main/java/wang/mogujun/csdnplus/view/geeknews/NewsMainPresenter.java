@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.di.PerFragment;
 import wang.mogujun.csdnplus.domain.interactor.geeknews.GetNewsColumnUseCase;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsColumn;
-import wang.mogujun.csdnplus.view.CSDNNavigator;
 import wang.mogujun.csdnplus.view.CSDNSubscriber;
 
 
@@ -20,19 +20,16 @@ public class NewsMainPresenter extends NewsMainContract.Presenter {
 
     @Inject
     GetNewsColumnUseCase mGetNewsColumnUseCase;
-    @Inject
-    CSDNNavigator mNavigator;
 
     @Inject
-    public NewsMainPresenter(GetNewsColumnUseCase useCase,CSDNNavigator navigator){
-        mGetNewsColumnUseCase = useCase;
-        mNavigator = navigator;
+    public NewsMainPresenter(){
+        CSDNApplication.getInstance().getNewsComponent().inject(this);
     }
 
     @Override
     public void getNewsColumns() {
         getView().showLoading();
-        mGetNewsColumnUseCase.execute(new CSDNSubscriber<List<NewsColumn>>(getView().getContext(),mNavigator){
+        mGetNewsColumnUseCase.execute(new CSDNSubscriber<List<NewsColumn>>(){
 
             @Override
             public void onNext(List<NewsColumn> newsColumns) {

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.orhanobut.logger.Logger;
 
+import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.data.exception.ResponseException;
 import wang.mogujun.csdnplus.domain.interactor.DefaultSubscriber;
 import wang.mogujun.csdnplus.exception.ErrorMessageFactory;
@@ -16,9 +17,9 @@ public class CSDNSubscriber<T> extends DefaultSubscriber<T>{
     Context mContext;
     CSDNNavigator mNavigator;
 
-    public CSDNSubscriber(Context context,CSDNNavigator navigator){
-        mContext = context;
-        mNavigator = navigator;
+    public CSDNSubscriber(){
+        mContext = CSDNApplication.getInstance().getApplicationComponent().context();
+        mNavigator = CSDNApplication.getInstance().getApplicationComponent().navigator();
     }
 
     @Override

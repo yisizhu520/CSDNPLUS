@@ -12,18 +12,13 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import butterknife.BindDimen;
 import butterknife.BindView;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import in.srain.cube.views.ptr.header.StoreHouseHeader;
-import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.R;
-import wang.mogujun.csdnplus.di.component.DaggerNewsComponent;
-import wang.mogujun.csdnplus.di.module.ActivityModule;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsLatestListInfo;
 import wang.mogujun.csdnplus.event.NewsItemClickEvent;
 import wang.mogujun.csdnplus.view.LazyBaseFragment;
@@ -47,9 +42,6 @@ public class NewsLatestListFragment extends
     @BindDimen(R.dimen.spacing_small)
     int mDividerBorderWidth;
 
-    @Inject
-    NewsLatestPresenter mNewsLatestPresenter;
-
     NewsLatestAdapter mAdapter;
 
     public static NewsLatestListFragment newInstance() {
@@ -59,13 +51,6 @@ public class NewsLatestListFragment extends
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DaggerNewsComponent
-                .builder()
-                .applicationComponent(CSDNApplication.getInstance().getApplicationComponent())
-                .activityModule(new ActivityModule(getActivity()))
-                .build()
-                .inject(this);
-
     }
 
     @Override
@@ -85,7 +70,7 @@ public class NewsLatestListFragment extends
         mPtrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                mNewsLatestPresenter.loadNewData();
+                presenter.loadNewData();
             }
 
             @Override
@@ -136,7 +121,7 @@ public class NewsLatestListFragment extends
 
     @Override
     public NewsLatestListContract.Presenter createPresenter() {
-        return mNewsLatestPresenter;
+        return new NewsLatestPresenter();
     }
 
     @Subscribe

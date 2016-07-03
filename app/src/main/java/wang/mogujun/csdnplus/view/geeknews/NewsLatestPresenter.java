@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.domain.DomainConstants;
 import wang.mogujun.csdnplus.domain.interactor.geeknews.GetLatestNewsUseCase;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsLatestListInfo;
-import wang.mogujun.csdnplus.view.CSDNNavigator;
 import wang.mogujun.csdnplus.view.CSDNSubscriber;
 import wang.mogujun.ext.utils.CollectionUtils;
 
@@ -19,13 +19,10 @@ public class NewsLatestPresenter extends NewsLatestListContract.Presenter {
 
     @Inject
     GetLatestNewsUseCase mGetLatestNewsUseCase;
-    @Inject
-    CSDNNavigator mNavigator;
 
     @Inject
-    public NewsLatestPresenter(GetLatestNewsUseCase useCase,CSDNNavigator navigator){
-        mGetLatestNewsUseCase = useCase;
-        mNavigator = navigator;
+    public NewsLatestPresenter(){
+                CSDNApplication.getInstance().getNewsComponent().inject(this);
     }
 
     @Override
@@ -36,8 +33,7 @@ public class NewsLatestPresenter extends NewsLatestListContract.Presenter {
                 .setLastId("-")
                 .setDirection(DomainConstants.DIRECTION_DOWN)
                 .setActivities_count(0);
-        mGetLatestNewsUseCase.execute(new CSDNSubscriber<List<NewsLatestListInfo>>
-                (getView().getContext(),mNavigator){
+        mGetLatestNewsUseCase.execute(new CSDNSubscriber<List<NewsLatestListInfo>>(){
 
             @Override
             protected void onErrorMsg(String errorMsg) {
@@ -72,8 +68,7 @@ public class NewsLatestPresenter extends NewsLatestListContract.Presenter {
                 .setLastId(lastId)
                 .setDirection(DomainConstants.DIRECTION_UP)
                 .setActivities_count(0);
-        mGetLatestNewsUseCase.execute(new CSDNSubscriber<List<NewsLatestListInfo>>
-                (getView().getContext(),mNavigator){
+        mGetLatestNewsUseCase.execute(new CSDNSubscriber<List<NewsLatestListInfo>>(){
 
             @Override
             protected void onErrorMsg(String errorMsg) {

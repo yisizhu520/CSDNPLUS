@@ -7,7 +7,6 @@ import wang.mogujun.csdnplus.di.PerFragment;
 import wang.mogujun.csdnplus.domain.interactor.user.LoginUseCase;
 import wang.mogujun.csdnplus.domain.model.CSDNResponse;
 import wang.mogujun.csdnplus.domain.model.UserInfo;
-import wang.mogujun.csdnplus.view.CSDNNavigator;
 import wang.mogujun.csdnplus.view.CSDNSubscriber;
 import wang.mogujun.ext.utils.JsonUtils;
 
@@ -19,19 +18,16 @@ public class LoginPresenter extends LoginContract.Presenter {
 
     @Inject
     LoginUseCase mLoginUseCase;
-    @Inject
-    CSDNNavigator mNavigator;
 
     @Inject
-    public LoginPresenter(LoginUseCase loginUseCase,CSDNNavigator navigator){
+    public LoginPresenter(LoginUseCase loginUseCase){
         mLoginUseCase = loginUseCase;
-        mNavigator = navigator;
     }
 
     @Override
     void doLogin(String account, String pwd) {
         mLoginUseCase.setParam(account,pwd);
-        mLoginUseCase.execute(new CSDNSubscriber<CSDNResponse>(getView().getContext(),mNavigator){
+        mLoginUseCase.execute(new CSDNSubscriber<CSDNResponse>(){
 
             @Override
             protected void onErrorMsg(String errorMsg) {

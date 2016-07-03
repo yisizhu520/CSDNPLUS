@@ -18,6 +18,9 @@ public class GetColumnNewsUseCase extends UseCase<List<NewsListInfo>> {
 
     private final NewsRepository mNewsRepository;
 
+    private int page;
+    private int comid;
+
     @Inject
     public GetColumnNewsUseCase(NewsRepository newsRepository, ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
         super(threadExecutor, postExecutionThread);
@@ -30,4 +33,13 @@ public class GetColumnNewsUseCase extends UseCase<List<NewsListInfo>> {
         return mNewsRepository.getColumnNews(1,13);
     }
 
+    public GetColumnNewsUseCase setPage(int page) {
+        this.page = page;
+        return this;
+    }
+
+    public GetColumnNewsUseCase setComid(int comid) {
+        this.comid = comid;
+        return this;
+    }
 }

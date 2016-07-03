@@ -27,6 +27,10 @@ public class NewsListContract {
 
         void showNoMoreData();
 
+        void showEmptyView();
+
+        void hideEmptyView();
+
     }
 
     static abstract class Presenter extends MvpBasePresenter<View> {

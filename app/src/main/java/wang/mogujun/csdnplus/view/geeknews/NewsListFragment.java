@@ -2,6 +2,7 @@ package wang.mogujun.csdnplus.view.geeknews;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import java.util.List;
 
@@ -40,7 +41,8 @@ public class NewsListFragment extends
     }
 
     @Override
-    protected void initViews() {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
     }
 
@@ -82,6 +84,16 @@ public class NewsListFragment extends
 
     @Override
     public void showNoMoreData() {
+
+    }
+
+    @Override
+    public void showEmptyView() {
+
+    }
+
+    @Override
+    public void hideEmptyView() {
 
     }
 }

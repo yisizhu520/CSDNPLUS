@@ -21,14 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
-import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.R;
-import wang.mogujun.csdnplus.di.component.DaggerNewsComponent;
-import wang.mogujun.csdnplus.di.component.NewsComponent;
-import wang.mogujun.csdnplus.di.module.ActivityModule;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsColumn;
 import wang.mogujun.csdnplus.event.HeadlineTabReselectedEvent;
 import wang.mogujun.csdnplus.view.MvpBaseFragment;
@@ -52,9 +46,6 @@ public class NewsMainFragment extends
     View mLoadingView;
 
     NewsPagerAdapter mPagerAdapter;
-
-    @Inject
-    NewsMainPresenter newsMainPresenter;
 
     private Map<Integer, Fragment> mFragmentMap = new HashMap<>();
 
@@ -84,12 +75,6 @@ public class NewsMainFragment extends
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        NewsComponent newsComponent = DaggerNewsComponent
-                .builder()
-                .applicationComponent(CSDNApplication.getInstance().getApplicationComponent())
-                .activityModule(new ActivityModule(getActivity()))
-                .build();
-        newsComponent.inject(this);
     }
 
     @Override
@@ -106,7 +91,7 @@ public class NewsMainFragment extends
             //FIXME 改成eventbus传输
             ((MainActivity) getActivity()).toggleMenu();
         });
-        newsMainPresenter.getNewsColumns();
+        presenter.getNewsColumns();
     }
 
 
@@ -118,7 +103,7 @@ public class NewsMainFragment extends
     @NonNull
     @Override
     public NewsMainPresenter createPresenter() {
-        return newsMainPresenter;
+        return new NewsMainPresenter();
     }
 
     public void showLoading() {
