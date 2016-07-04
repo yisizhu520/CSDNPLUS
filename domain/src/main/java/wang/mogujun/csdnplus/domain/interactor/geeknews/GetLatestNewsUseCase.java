@@ -10,12 +10,13 @@ import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
 import wang.mogujun.csdnplus.domain.interactor.UseCase;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsLatestListInfo;
+import wang.mogujun.csdnplus.domain.model.geeknews.NewsListInfo;
 import wang.mogujun.csdnplus.domain.repository.NewsRepository;
 
 /**
  * Created by WangJun on 2016/6/25.
  */
-public class GetLatestNewsUseCase extends UseCase<List<NewsLatestListInfo>> {
+public class GetLatestNewsUseCase extends UseCase<List<NewsListInfo>> {
 
     private final NewsRepository mNewsRepository;
 
@@ -31,7 +32,7 @@ public class GetLatestNewsUseCase extends UseCase<List<NewsLatestListInfo>> {
     }
 
     @Override
-    protected Observable<List<NewsLatestListInfo>> buildUseCaseObservable() {
+    protected Observable<List<NewsListInfo>> buildUseCaseObservable() {
         return mNewsRepository.getLatestNews(lastId,direction,size,activities_count);
     }
 

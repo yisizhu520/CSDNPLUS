@@ -8,6 +8,7 @@ import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.domain.DomainConstants;
 import wang.mogujun.csdnplus.domain.interactor.geeknews.GetLatestNewsUseCase;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsLatestListInfo;
+import wang.mogujun.csdnplus.domain.model.geeknews.NewsListInfo;
 import wang.mogujun.csdnplus.view.CSDNSubscriber;
 import wang.mogujun.ext.utils.CollectionUtils;
 
@@ -15,10 +16,12 @@ import wang.mogujun.ext.utils.CollectionUtils;
 /**
  * Created by WangJun on 2016/6/26.
  */
-public class NewsLatestPresenter extends NewsLatestListContract.Presenter {
+public class NewsLatestPresenter extends NewsListContract.Presenter {
 
     @Inject
     GetLatestNewsUseCase mGetLatestNewsUseCase;
+
+    private String mLastId;
 
     @Inject
     public NewsLatestPresenter(){
@@ -33,7 +36,7 @@ public class NewsLatestPresenter extends NewsLatestListContract.Presenter {
                 .setLastId("-")
                 .setDirection(DomainConstants.DIRECTION_DOWN)
                 .setActivities_count(0);
-        mGetLatestNewsUseCase.execute(new CSDNSubscriber<List<NewsLatestListInfo>>(){
+        mGetLatestNewsUseCase.execute(new CSDNSubscriber<List<NewsListInfo>>(){
 
             @Override
             protected void onErrorMsg(String errorMsg) {
@@ -48,13 +51,14 @@ public class NewsLatestPresenter extends NewsLatestListContract.Presenter {
             }
 
             @Override
-            public void onNext(List<NewsLatestListInfo> newsLatestListInfos) {
+            public void onNext(List<NewsListInfo> newsLatestListInfos) {
                 super.onNext(newsLatestListInfos);
                 if(CollectionUtils.isEmpty(newsLatestListInfos)){
                     getView().showEmptyView();
                 }else{
                     //TODO 将新数据缓存到本地数据库,应该在repository层里做
                     getView().showNewData(newsLatestListInfos);
+                    mLastId = newsLatestListInfos.get(newsLatestListInfos.size()-1).get_id();
                 }
 
 
@@ -63,12 +67,12 @@ public class NewsLatestPresenter extends NewsLatestListContract.Presenter {
     }
 
     @Override
-    public void loadMoreData(String lastId) {
+    public void loadMoreData() {
         mGetLatestNewsUseCase
-                .setLastId(lastId)
+                .setLastId(mLastId)
                 .setDirection(DomainConstants.DIRECTION_UP)
                 .setActivities_count(0);
-        mGetLatestNewsUseCase.execute(new CSDNSubscriber<List<NewsLatestListInfo>>(){
+        mGetLatestNewsUseCase.execute(new CSDNSubscriber<List<NewsListInfo>>(){
 
             @Override
             protected void onErrorMsg(String errorMsg) {
@@ -82,13 +86,14 @@ public class NewsLatestPresenter extends NewsLatestListContract.Presenter {
             }
 
             @Override
-            public void onNext(List<NewsLatestListInfo> newsLatestListInfos) {
+            public void onNext(List<NewsListInfo> newsLatestListInfos) {
                 super.onNext(newsLatestListInfos);
                 if(CollectionUtils.isEmpty(newsLatestListInfos)){
                     getView().showNoMoreData();
                 }else{
                     //TODO 将新数据缓存到本地数据库,应该在repository层里做
                     getView().showMoreData(newsLatestListInfos);
+                    mLastId = newsLatestListInfos.get(newsLatestListInfos.size()-1).get_id();
                 }
 
 

@@ -35,7 +35,7 @@ public class NewsDataRepository implements NewsRepository {
     }
 
     @Override
-    public Observable<List<NewsLatestListInfo>> getLatestNews(String lastId, String direction, int size, int activities_count) {
+    public Observable<List<NewsListInfo>> getLatestNews(String lastId, String direction, int size, int activities_count) {
         return RepositoryUtils.extractData(
                 mNewsApi.getLatestNews(lastId, direction, size, activities_count),
                 new TypeToken<List<NewsLatestListInfo>>() {}.getType()

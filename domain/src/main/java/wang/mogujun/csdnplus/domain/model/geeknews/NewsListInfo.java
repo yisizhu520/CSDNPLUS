@@ -80,6 +80,35 @@ public class NewsListInfo {
     private int in_white_list;
     private int comments;
 
+    /*下面的是最新头条里的不同的字段*/
+    private String _id;
+    private String is_caught;
+    private String catch_id;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getIs_caught() {
+        return is_caught;
+    }
+
+    public void setIs_caught(String is_caught) {
+        this.is_caught = is_caught;
+    }
+
+    public String getCatch_id() {
+        return catch_id;
+    }
+
+    public void setCatch_id(String catch_id) {
+        this.catch_id = catch_id;
+    }
+
     public String getDesc() {
         return desc;
     }
