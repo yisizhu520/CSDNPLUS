@@ -9,7 +9,6 @@ import wang.mogujun.csdnplus.domain.DomainConstants;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
 import wang.mogujun.csdnplus.domain.interactor.UseCase;
-import wang.mogujun.csdnplus.domain.model.geeknews.NewsLatestListInfo;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsListInfo;
 import wang.mogujun.csdnplus.domain.repository.NewsRepository;
 

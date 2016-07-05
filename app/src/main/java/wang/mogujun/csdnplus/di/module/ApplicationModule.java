@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import wang.mogujun.csdnplus.BuildConfig;
 import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.UIThread;
 import wang.mogujun.csdnplus.data.executor.JobExecutor;
@@ -43,8 +44,8 @@ public class ApplicationModule {
         //TODO 根据BuildConfig.DEBUG来设置
         return EventBus
                 .builder()
-                .throwSubscriberException(true)
-                .logNoSubscriberMessages(true)
+                .throwSubscriberException(BuildConfig.DEBUG)
+                .logNoSubscriberMessages(BuildConfig.DEBUG)
                 .build();
     }
 

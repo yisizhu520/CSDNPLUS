@@ -60,10 +60,10 @@ public class CSDNApplication extends Application {
     private void initLogger(){
         Logger
                 .init(DEFAULT_LOG_TAG)                 // default PRETTYLOGGER or use just init()
-                .methodCount(8)                 // default 2
+                .methodCount(2)                 // default 2
                 .hideThreadInfo()               // default shown
                 .logLevel(LogLevel.FULL)        // default LogLevel.FULL
-                .methodOffset(4)                // default 0
+                .methodOffset(2)                // default 0
                 .logTool(new AndroidLogTool()); // custom log tool, optional
     }
 

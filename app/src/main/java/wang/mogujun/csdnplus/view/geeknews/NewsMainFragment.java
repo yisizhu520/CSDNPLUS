@@ -53,13 +53,11 @@ public class NewsMainFragment extends
     private Fragment getFragment(int position) {
         Fragment f = mFragmentMap.get(position);
         if (f == null) {
-            if (position == 0) {//TODO 如果是最近头条，特殊处理
+            if (position == 0) {
                 f = NewsLatestListFragment.newInstance();
             } else {
-                //FIXME 更改过来
-//                int comid = mPagerAdapter.getColumns().get(position).getId();
-//                f = NewsListFragment.newInstance(comid);
-                f = NewsLatestListFragment.newInstance();
+                int comid = mPagerAdapter.getColumns().get(position).getId();
+                f = NewsListFragment.newInstance(comid);
             }
             mFragmentMap.put(position, f);
         }
@@ -82,7 +80,7 @@ public class NewsMainFragment extends
         super.onViewCreated(view, savedInstanceState);
         mToolbar.setTitle(R.string.geeknews);
         Drawable menuDra = new IconicsDrawable(getActivity())
-                //FIXME 主题相关
+                //TODO 主题相关
                 .color(Color.WHITE)
                 .icon(MaterialDesignIconic.Icon.gmi_menu)
                 .sizeRes(R.dimen.nav_icon_size);

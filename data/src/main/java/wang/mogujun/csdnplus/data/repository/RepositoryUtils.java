@@ -34,7 +34,7 @@ public class RepositoryUtils {
             if (response == null) {
                 return Observable.error(new NetworkConnectionException());
             } else if (response.getCode() == ResponseException.CODE_SUCCESS) {
-                Logger.json(mGson.toJson(response.getData()));
+                //Logger.json(mGson.toJson(response.getData()));
                 return Observable.just(mGson.fromJson(mGson.toJson(response.getData()), type));
             } else {
                 Logger.e("response error--code:%s,message:s",response.getCode(),response.getMessage());

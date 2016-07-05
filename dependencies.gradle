@@ -25,6 +25,7 @@ ext {
     processButtonVersion = '1.0.4'
     avloadingVersion = '1.0.5'
     smoothProgressBarVersion = '1.1.0'
+    circleProgressBarVersion = '1.2.0'
     roundedImageVersion = '2.2.1'
     ultraPtrVersion = '1.0.11'
     BRVAHVersion = 'v1.8.5'
@@ -128,6 +129,7 @@ ext {
             materialEditText : "com.rengwuxian.materialedittext:library:${materialEditTextVersion}",
             avloading        : "com.wang.avi:library:${avloadingVersion}",
             smoothProgressBar: "com.github.castorflex.smoothprogressbar:library:${smoothProgressBarVersion}",
+            circleProgressBar: "com.github.castorflex.smoothprogressbar:library-circular:${circleProgressBarVersion}",
             processButton    : "com.github.dmytrodanylyk.android-process-button:library:${processButtonVersion}",
             roundedImageView : "com.makeramen:roundedimageview:${roundedImageVersion}",
             ultraPtr         : "in.srain.cube:ultra-ptr:${ultraPtrVersion}",

@@ -20,11 +20,13 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import in.srain.cube.views.ptr.header.StoreHouseHeader;
 import wang.mogujun.csdnplus.R;
+import wang.mogujun.csdnplus.domain.DomainConstants;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsListInfo;
 import wang.mogujun.csdnplus.event.NewsItemClickEvent;
 import wang.mogujun.csdnplus.view.LazyBaseFragment;
 import wang.mogujun.ext.utils.TipUtils;
 import wang.mogujun.uikit.BorderDividerItemDecoration;
+import wang.mogujun.uikit.loadmore.LoadMoreViewFactory;
 
 /**
  * Created by WangJun on 2016/6/25.
@@ -47,7 +49,7 @@ public class NewsListFragment extends
 
     private int mComid;
 
-    NewsListAdapter mAdapter;
+    protected NewsRecyclerAdapter mAdapter;
 
     public static NewsListFragment newInstance(int comid) {
         NewsListFragment fragment = new NewsListFragment();
@@ -60,7 +62,10 @@ public class NewsListFragment extends
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mComid = getArguments().getInt(EXTRA_COMID);
+        getEventBus().register(this);
+        if (getArguments() != null) {
+            mComid = getArguments().getInt(EXTRA_COMID);
+        }
     }
 
     @Override
@@ -95,8 +100,12 @@ public class NewsListFragment extends
                 new BorderDividerItemDecoration(mDividerBorderWidth,
                         mDividerBorderWidth));
         mDataRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new NewsListAdapter(getActivity(),null);
+        mAdapter = new NewsRecyclerAdapter(null);
         mDataRv.setAdapter(mAdapter);
+        View loadMoreView = LoadMoreViewFactory.createLoadMoreView(getActivity(),1);
+        mAdapter.setLoadingView(loadMoreView);
+        mAdapter.openLoadMore(DomainConstants.DEFAULT_PAGE_SIZE, true);
+        mAdapter.setOnLoadMoreListener(() -> presenter.loadMoreData());
         mDataRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -135,11 +144,11 @@ public class NewsListFragment extends
     }
 
     @Subscribe
-    public void onNewsItemClickEvent(NewsItemClickEvent event){
+    public void onNewsItemClickEvent(NewsItemClickEvent event) {
         NewsListInfo item = event.item;
-        switch (event.type){
+        switch (event.type) {
             case NewsItemClickEvent.EVENT_CONTENT_CLICK:
-                showToast("点击了:"+item.getTitle());
+                showToast("点击了:" + item.getTitle());
                 break;
         }
 
@@ -158,7 +167,8 @@ public class NewsListFragment extends
 
     @Override
     public void showNewData(List<NewsListInfo> data) {
-        mAdapter.setData(data);
+        mAdapter.setNewData(data);
+        mAdapter.openLoadMore(data.size(),true);
     }
 
     @Override
@@ -168,17 +178,26 @@ public class NewsListFragment extends
 
     @Override
     public void showMoreData(List<NewsListInfo> data) {
-        mAdapter.addAll(data);
+        mAdapter.notifyDataChangedAfterLoadMore(data, true);
     }
 
     @Override
     public void showMoreDataError(String msg) {
         TipUtils.showSnack(getActivity(), msg);
+//        TextView tv = new TextView(getActivity());
+//        tv.setTextColor(Color.BLACK);
+//        tv.setText("加载更多失败了");
+//        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT, DimenUtils.dp2px(getActivity(),48));
+//        tv.setLayoutParams(lp);
+//        mAdapter.addFooterView(tv);
+        mAdapter.notifyDataChangedAfterLoadMore(true);
     }
 
     @Override
     public void showNoMoreData() {
-        TipUtils.showToast(getActivity(),"厉害厉害，都被你看光了，满足了吧o(*￣︶￣*)o");
+        TipUtils.showToast(getActivity(), "厉害厉害，都被你看光了，满足了吧o(*￣︶￣*)o");
+        mAdapter.notifyDataChangedAfterLoadMore(false);
     }
 
     @Override
@@ -189,5 +208,11 @@ public class NewsListFragment extends
     @Override
     public void hideEmptyView() {
         mEmptyLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getEventBus().register(this);
     }
 }

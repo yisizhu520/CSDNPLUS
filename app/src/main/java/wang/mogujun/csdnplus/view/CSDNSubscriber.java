@@ -25,6 +25,7 @@ public class CSDNSubscriber<T> extends DefaultSubscriber<T>{
     @Override
     public void onError(Exception e) {
         super.onError(e);
+        e.printStackTrace();
         if (!handleCSDNResponseError(e)) {
             if (e != null && e.getMessage() != null) {
                 Logger.e(e.getMessage());

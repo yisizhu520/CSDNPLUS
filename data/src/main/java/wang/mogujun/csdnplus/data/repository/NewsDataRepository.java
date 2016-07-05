@@ -10,7 +10,6 @@ import javax.inject.Singleton;
 import rx.Observable;
 import wang.mogujun.csdnplus.data.net.api.NewsApi;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsColumn;
-import wang.mogujun.csdnplus.domain.model.geeknews.NewsLatestListInfo;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsListInfo;
 import wang.mogujun.csdnplus.domain.repository.NewsRepository;
 
@@ -38,7 +37,7 @@ public class NewsDataRepository implements NewsRepository {
     public Observable<List<NewsListInfo>> getLatestNews(String lastId, String direction, int size, int activities_count) {
         return RepositoryUtils.extractData(
                 mNewsApi.getLatestNews(lastId, direction, size, activities_count),
-                new TypeToken<List<NewsLatestListInfo>>() {}.getType()
+                new TypeToken<List<NewsListInfo>>() {}.getType()
         );
     }
 
@@ -46,7 +45,7 @@ public class NewsDataRepository implements NewsRepository {
     public Observable<List<NewsListInfo>> getColumnNews(int page, int comid) {
         return RepositoryUtils.extractData(
                 mNewsApi.getColumnNews(page, comid),
-                new TypeToken<List<NewsLatestListInfo>>() {}.getType()
+                new TypeToken<List<NewsListInfo>>() {}.getType()
         );
     }
 

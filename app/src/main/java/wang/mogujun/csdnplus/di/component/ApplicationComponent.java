@@ -45,7 +45,6 @@ public interface ApplicationComponent {
 
     //TODO 抽象出BaseAdapter
     void inject(NewsListAdapter adapter);
-    void inject(NewsAdapter adapter);
 
 
 }

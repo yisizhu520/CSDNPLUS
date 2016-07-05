@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.domain.DomainConstants;
 import wang.mogujun.csdnplus.domain.interactor.geeknews.GetLatestNewsUseCase;
-import wang.mogujun.csdnplus.domain.model.geeknews.NewsLatestListInfo;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsListInfo;
 import wang.mogujun.csdnplus.view.CSDNSubscriber;
 import wang.mogujun.ext.utils.CollectionUtils;
@@ -25,7 +24,7 @@ public class NewsLatestPresenter extends NewsListContract.Presenter {
 
     @Inject
     public NewsLatestPresenter(){
-                CSDNApplication.getInstance().getNewsComponent().inject(this);
+        CSDNApplication.getInstance().getNewsComponent().inject(this);
     }
 
     @Override

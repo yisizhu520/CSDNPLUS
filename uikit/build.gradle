@@ -27,6 +27,7 @@ dependencies {
     compile uiDependencies.materialEditText
     compile uiDependencies.avloading
     compile uiDependencies.smoothProgressBar
+    compile uiDependencies.circleProgressBar
     compile uiDependencies.processButton
     compile uiDependencies.roundedImageView
     compile uiDependencies.ultraPtr

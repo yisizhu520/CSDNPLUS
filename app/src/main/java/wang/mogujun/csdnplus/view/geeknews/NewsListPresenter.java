@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.domain.interactor.geeknews.GetColumnNewsUseCase;
 import wang.mogujun.csdnplus.domain.model.geeknews.NewsListInfo;
 import wang.mogujun.csdnplus.view.CSDNSubscriber;
@@ -24,6 +25,7 @@ public class NewsListPresenter extends NewsListContract.Presenter {
 
     public NewsListPresenter(int comid){
         mComid = comid;
+        CSDNApplication.getInstance().getNewsComponent().inject(this);
     }
 
     @Override
