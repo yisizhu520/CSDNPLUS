@@ -1,9 +1,12 @@
 package wang.mogujun.csdnplus.geeknews.domain.model;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by WangJun on 2016/4/14.
  */
-public class NewsListInfo {
+public class NewsListInfo extends RealmObject{
 
 
     /**
@@ -45,9 +48,10 @@ public class NewsListInfo {
      */
 
     /*共有字段*/
+    @PrimaryKey
+    private int id;
     private String desc;
     private String type;
-    private int id;
     private String nick_name;
     private String title;
     private String created_at;

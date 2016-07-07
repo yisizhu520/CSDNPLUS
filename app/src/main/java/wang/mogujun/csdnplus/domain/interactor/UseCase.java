@@ -58,6 +58,7 @@ public abstract class UseCase<T> {
      */
     @SuppressWarnings("unchecked")
     public void execute(Subscriber<T> UseCaseSubscriber) {
+        unsubscribe();
         this.subscription = this.buildUseCaseObservable()
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())
@@ -68,7 +69,7 @@ public abstract class UseCase<T> {
      * Unsubscribes from current {@link Subscription}.
      */
     public void unsubscribe() {
-        if (!subscription.isUnsubscribed()) {
+        if (subscription != null && !subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }
     }

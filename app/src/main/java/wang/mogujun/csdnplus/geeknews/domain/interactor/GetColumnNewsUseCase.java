@@ -1,4 +1,4 @@
-package wang.mogujun.csdnplus.geeknews.domain.interactor.geeknews;
+package wang.mogujun.csdnplus.geeknews.domain.interactor;
 
 import java.util.List;
 

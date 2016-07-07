@@ -6,6 +6,8 @@ import com.orhanobut.logger.AndroidLogTool;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import wang.mogujun.csdnplus.data.cache.LoginPrefs;
 import wang.mogujun.csdnplus.data.cache.UserDetailPrefs;
 import wang.mogujun.csdnplus.di.component.ApplicationComponent;
@@ -41,7 +43,19 @@ public class CSDNApplication extends Application {
         initLogger();
         initLeakCanary();
         initBlockCanary();
+        initRealm();
+    }
 
+    private void initRealm(){
+        // The Realm file will be located in Context.getFilesDir() with name "myrealm.realm"
+        RealmConfiguration config = new RealmConfiguration.Builder(this)
+                .name("csdnplus.realm")
+                //.encryptionKey(getKey())
+                .schemaVersion(1) //TODO 数据库有更改，发布时需要更新版本号
+                //.modules(new MySchemaModule())
+                //.migration(new MyMigration()) TODO 数据库升级时需要数据迁移
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
 
     private void initInjector() {
