@@ -62,39 +62,6 @@ ext {
     espressoVersion = '2.0'
     testingSupportLibVersion = '0.1'
 
-    domainDependencies = [
-            daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
-            dagger         : "com.google.dagger:dagger:${daggerVersion}",
-            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
-    ]
-
-    domainTestDependencies = [
-            junit  : "junit:junit:${jUnitVersion}",
-            mockito: "org.mockito:mockito-core:${mockitoVersion}",
-    ]
-
-    dataDependencies = [
-            daggerCompiler          : "com.google.dagger:dagger-compiler:${daggerVersion}",
-            dagger                  : "com.google.dagger:dagger:${daggerVersion}",
-            okHttp                  : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
-            okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
-            retrofit                : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            retrofitConverterGson   : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitAdapterRxJava   : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
-            gson                    : "com.google.code.gson:gson:${gsonVersion}",
-            rxJava                  : "io.reactivex:rxjava:${rxJavaVersion}",
-            rxAndroid               : "io.reactivex:rxandroid:${rxAndroidVersion}",
-            javaxAnnotation         : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            androidAnnotations      : "com.android.support:support-annotations:${androidAnnotationsVersion}"
-    ]
-
-    dataTestDependencies = [
-            junit      : "junit:junit:${jUnitVersion}",
-            assertj    : "org.assertj:assertj-core:${assertJVersion}",
-            mockito    : "org.mockito:mockito-core:${mockitoVersion}",
-            robolectric: "org.robolectric:robolectric:${robolectricVersion}",
-    ]
 
     googleSupportDependencies = [
             appcompatV7 : "com.android.support:appcompat-v7:${googleSupportVersion}",
@@ -104,7 +71,7 @@ ext {
             cardview    : "com.android.support:cardview-v7:${googleSupportVersion}"
     ]
 
-    presentationDependencies = [
+    coreDependencies = [
             daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger            : "com.google.dagger:dagger:${daggerVersion}",
             butterKnife       : "com.jakewharton:butterknife:${butterKnifeVersion}",
@@ -114,6 +81,14 @@ ext {
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
             eventBus          : "org.greenrobot:eventbus:${eventBusVersion}",
+            //net
+            okHttp                  : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            retrofit                : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitConverterGson   : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitAdapterRxJava   : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            gson                    : "com.google.code.gson:gson:${gsonVersion}",
+            //image
             glide             : "com.github.bumptech.glide:glide:${glideVersion}",
             glideTransform    : "jp.wasabeef:glide-transformations:${glideTransVersion}",
             //font
@@ -136,6 +111,23 @@ ext {
             BRVAH            : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${BRVAHVersion}"
     ]
 
+    debugDependencies = [
+            leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+            logger    : "com.github.orhanobut:logger:${loggerVersion}",
+    ]
+
+    domainTestDependencies = [
+            junit  : "junit:junit:${jUnitVersion}",
+            mockito: "org.mockito:mockito-core:${mockitoVersion}",
+    ]
+
+    dataTestDependencies = [
+            junit      : "junit:junit:${jUnitVersion}",
+            assertj    : "org.assertj:assertj-core:${assertJVersion}",
+            mockito    : "org.mockito:mockito-core:${mockitoVersion}",
+            robolectric: "org.robolectric:robolectric:${robolectricVersion}",
+    ]
+
     presentationTestDependencies = [
             mockito          : "org.mockito:mockito-core:${mockitoVersion}",
             dexmaker         : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
@@ -144,9 +136,6 @@ ext {
             testingSupportLib: "com.android.support.test:testing-support-lib:${testingSupportLibVersion}",
     ]
 
-    debugDependencies = [
-            leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
-            logger    : "com.github.orhanobut:logger:${loggerVersion}",
-    ]
+
 
 }

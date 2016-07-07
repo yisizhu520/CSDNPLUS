@@ -12,12 +12,12 @@ import wang.mogujun.csdnplus.BuildConfig;
 import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.UIThread;
 import wang.mogujun.csdnplus.data.executor.JobExecutor;
-import wang.mogujun.csdnplus.data.repository.NewsDataRepository;
-import wang.mogujun.csdnplus.data.repository.UserDataRepository;
+import wang.mogujun.csdnplus.geeknews.data.repository.NewsDataRepository;
+import wang.mogujun.csdnplus.user.data.repository.UserDataRepository;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
-import wang.mogujun.csdnplus.domain.repository.NewsRepository;
-import wang.mogujun.csdnplus.domain.repository.UserRepository;
+import wang.mogujun.csdnplus.geeknews.domain.repository.NewsRepository;
+import wang.mogujun.csdnplus.user.domain.repository.UserRepository;
 import wang.mogujun.csdnplus.view.CSDNNavigator;
 
 /**

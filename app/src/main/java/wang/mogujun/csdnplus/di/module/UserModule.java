@@ -5,8 +5,8 @@ import dagger.Provides;
 import wang.mogujun.csdnplus.di.PerFragment;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
-import wang.mogujun.csdnplus.domain.interactor.user.LoginUseCase;
-import wang.mogujun.csdnplus.domain.repository.UserRepository;
+import wang.mogujun.csdnplus.user.domain.interactor.LoginUseCase;
+import wang.mogujun.csdnplus.user.domain.repository.UserRepository;
 
 /**
  * Created by WangJun on 2016/6/7.

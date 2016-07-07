@@ -1,1 +1,1 @@
-include ':app', ':domain', ':data', ':ext', ':uiframework', ':uikit'
+include ':app', ':ext', ':uiframework', ':uikit'

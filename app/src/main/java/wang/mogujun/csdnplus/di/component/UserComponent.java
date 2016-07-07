@@ -9,7 +9,7 @@ import wang.mogujun.csdnplus.di.PerFragment;
 import wang.mogujun.csdnplus.di.module.ActivityModule;
 import wang.mogujun.csdnplus.di.module.UserModule;
 import wang.mogujun.csdnplus.view.main.SplashActivity;
-import wang.mogujun.csdnplus.view.user.LoginFragment;
+import wang.mogujun.csdnplus.user.LoginFragment;
 
 @PerFragment
 @Component(dependencies = {ApplicationComponent.class}, modules = {ActivityModule.class,UserModule.class})

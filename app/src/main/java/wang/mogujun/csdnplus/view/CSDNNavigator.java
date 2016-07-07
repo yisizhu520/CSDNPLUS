@@ -6,7 +6,7 @@ import android.content.Intent;
 import javax.inject.Singleton;
 
 import wang.mogujun.csdnplus.view.main.MainActivity;
-import wang.mogujun.csdnplus.view.user.LoginActivity;
+import wang.mogujun.csdnplus.user.LoginActivity;
 
 /**
  * Created by WangJun on 2016/6/20.

@@ -7,9 +7,9 @@ package wang.mogujun.csdnplus.di.component;
 import dagger.Component;
 import wang.mogujun.csdnplus.di.PerFragment;
 import wang.mogujun.csdnplus.di.module.NewsModule;
-import wang.mogujun.csdnplus.view.geeknews.NewsLatestPresenter;
-import wang.mogujun.csdnplus.view.geeknews.NewsListPresenter;
-import wang.mogujun.csdnplus.view.geeknews.NewsMainPresenter;
+import wang.mogujun.csdnplus.geeknews.NewsLatestPresenter;
+import wang.mogujun.csdnplus.geeknews.NewsListPresenter;
+import wang.mogujun.csdnplus.geeknews.NewsMainPresenter;
 
 @PerFragment
 @Component(dependencies = {ApplicationComponent.class}, modules = {NewsModule.class})

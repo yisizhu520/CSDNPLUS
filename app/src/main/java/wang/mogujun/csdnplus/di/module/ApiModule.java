@@ -5,8 +5,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import wang.mogujun.csdnplus.data.net.ApiService;
-import wang.mogujun.csdnplus.data.net.api.NewsApi;
-import wang.mogujun.csdnplus.data.net.api.UserApi;
+import wang.mogujun.csdnplus.geeknews.data.net.NewsApi;
+import wang.mogujun.csdnplus.user.data.net.UserApi;
 
 /**
  * Created by WangJun on 2016/6/7.

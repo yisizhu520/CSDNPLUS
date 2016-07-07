@@ -11,12 +11,12 @@ import wang.mogujun.csdnplus.di.module.ApiModule;
 import wang.mogujun.csdnplus.di.module.ApplicationModule;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
-import wang.mogujun.csdnplus.domain.repository.NewsRepository;
-import wang.mogujun.csdnplus.domain.repository.UserRepository;
+import wang.mogujun.csdnplus.geeknews.domain.repository.NewsRepository;
+import wang.mogujun.csdnplus.user.domain.repository.UserRepository;
 import wang.mogujun.csdnplus.view.BaseActivity;
 import wang.mogujun.csdnplus.view.BaseFragment;
 import wang.mogujun.csdnplus.view.CSDNNavigator;
-import wang.mogujun.csdnplus.view.geeknews.NewsListAdapter;
+import wang.mogujun.csdnplus.geeknews.NewsListAdapter;
 
 /**
  * Created by WangJun on 2016/6/7.

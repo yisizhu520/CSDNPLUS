@@ -17,7 +17,7 @@ import wang.mogujun.csdnplus.di.HasNewsComponent;
 import wang.mogujun.csdnplus.di.component.NewsComponent;
 import wang.mogujun.csdnplus.event.DrawerItemClickEvent;
 import wang.mogujun.csdnplus.view.BaseActivity;
-import wang.mogujun.csdnplus.view.geeknews.NewsMainFragment;
+import wang.mogujun.csdnplus.geeknews.NewsMainFragment;
 
 public class MainActivity extends BaseActivity implements HasNewsComponent{
 

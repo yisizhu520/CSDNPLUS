@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'realm-android'
 
 buildscript {
     repositories {
@@ -73,13 +74,11 @@ android {
 
 
 dependencies {
-    def presentationDependencies = rootProject.ext.presentationDependencies
+    def coreDependencies = rootProject.ext.coreDependencies
     //def presentationTestDependencies = rootProject.ext.presentationTestDependencies
     def debugDependencies = rootProject.ext.debugDependencies
     def googleSupportDependencies = rootProject.ext.googleSupportDependencies
 
-    compile project(':domain')
-    compile project(':data')
     compile project(':uiframework')
     compile project(':uikit')
     compile project(':ext')
@@ -90,23 +89,36 @@ dependencies {
     compile googleSupportDependencies.recyclerview
     compile googleSupportDependencies.cardview
 
-    compile presentationDependencies.eventBus
+    apt coreDependencies.butterKnifeCompiler
+    apt coreDependencies.daggerCompiler
 
-    apt presentationDependencies.butterKnifeCompiler
-    apt presentationDependencies.daggerCompiler
-
-    compile presentationDependencies.dagger
-    compile presentationDependencies.butterKnife
-    compile presentationDependencies.rxJava
-    compile presentationDependencies.rxAndroid
-    provided presentationDependencies.javaxAnnotation
-    compile presentationDependencies.androidAnnotations
-    compile presentationDependencies.glide
-    compile presentationDependencies.glideTransform
+    compile coreDependencies.eventBus
+    compile coreDependencies.dagger
+    compile coreDependencies.butterKnife
+    compile coreDependencies.rxJava
+    compile coreDependencies.rxAndroid
+    provided coreDependencies.javaxAnnotation
+    compile coreDependencies.androidAnnotations
+    //net
+    compile coreDependencies.okHttp
+    compile coreDependencies.okHttpLoggingInterceptor
+    compile coreDependencies.retrofit
+    compile coreDependencies.retrofitConverterGson
+    compile coreDependencies.retrofitAdapterRxJava
+    compile coreDependencies.gson
+    //image
+    compile coreDependencies.glide
+    compile coreDependencies.glideTransform
     //font
-    compile presentationDependencies.iconicsCore
-    compile presentationDependencies.fontGMI
-    compile presentationDependencies.fontMDI
+    compile coreDependencies.iconicsCore
+    compile coreDependencies.fontGMI
+    compile coreDependencies.fontMDI
+
+
+
+
+
+
 
     compile debugDependencies.logger
 

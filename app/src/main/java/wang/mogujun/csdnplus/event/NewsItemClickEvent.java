@@ -1,6 +1,6 @@
 package wang.mogujun.csdnplus.event;
 
-import wang.mogujun.csdnplus.domain.model.geeknews.NewsListInfo;
+import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
 
 /**
  * Created by WangJun on 2016/7/2.

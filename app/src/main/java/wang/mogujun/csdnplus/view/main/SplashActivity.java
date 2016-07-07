@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import wang.mogujun.csdnplus.R;
 import wang.mogujun.csdnplus.data.cache.LoginPrefs;
-import wang.mogujun.csdnplus.domain.interactor.user.LoginUseCase;
+import wang.mogujun.csdnplus.user.domain.interactor.LoginUseCase;
 import wang.mogujun.csdnplus.event.SplashFinishedEvent;
 import wang.mogujun.csdnplus.view.BaseActivity;
 

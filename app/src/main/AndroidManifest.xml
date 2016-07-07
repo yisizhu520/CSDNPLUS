@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.user.LoginActivity">
+        <activity android:name=".user.LoginActivity">
         </activity>
         <activity android:name=".view.main.SplashActivity">
             <intent-filter>
