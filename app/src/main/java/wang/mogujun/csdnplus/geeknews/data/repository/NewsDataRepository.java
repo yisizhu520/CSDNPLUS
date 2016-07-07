@@ -1,0 +1,53 @@
+package wang.mogujun.csdnplus.geeknews.data.repository;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import rx.Observable;
+import wang.mogujun.csdnplus.geeknews.data.net.NewsApi;
+import wang.mogujun.csdnplus.data.repository.RepositoryUtils;
+import wang.mogujun.csdnplus.geeknews.domain.model.NewsColumn;
+import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
+import wang.mogujun.csdnplus.geeknews.domain.repository.NewsRepository;
+
+/**
+ * Created by WangJun on 2016/6/25.
+ */
+@Singleton
+public class NewsDataRepository implements NewsRepository {
+
+    @Inject
+    protected NewsApi mNewsApi;
+
+    @Inject
+    public NewsDataRepository() {
+    }
+
+    @Override
+    public Observable<List<NewsColumn>> getNewsColumns() {
+        return RepositoryUtils.extractData(mNewsApi.getNewsColumns(),
+                new TypeToken<List<NewsColumn>>() {}.getType()
+        );
+    }
+
+    @Override
+    public Observable<List<NewsListInfo>> getLatestNews(String lastId, String direction, int size, int activities_count) {
+        return RepositoryUtils.extractData(
+                mNewsApi.getLatestNews(lastId, direction, size, activities_count),
+                new TypeToken<List<NewsListInfo>>() {}.getType()
+        );
+    }
+
+    @Override
+    public Observable<List<NewsListInfo>> getColumnNews(int page, int comid) {
+        return RepositoryUtils.extractData(
+                mNewsApi.getColumnNews(page, comid),
+                new TypeToken<List<NewsListInfo>>() {}.getType()
+        );
+    }
+
+}
