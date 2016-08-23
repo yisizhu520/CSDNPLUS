@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.domain.DomainConstants;
-import wang.mogujun.csdnplus.geeknews.domain.interactor.geeknews.GetLatestNewsUseCase;
+import wang.mogujun.csdnplus.geeknews.domain.interactor.GetLatestNewsUseCase;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
 import wang.mogujun.csdnplus.view.CSDNSubscriber;
 import wang.mogujun.ext.utils.CollectionUtils;

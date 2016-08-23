@@ -56,7 +56,7 @@ public class NewsMainFragment extends
             if (position == 0) {
                 f = NewsLatestListFragment.newInstance();
             } else {
-                int comid = mPagerAdapter.getColumns().get(position).getId();
+                int comid = mPagerAdapter.getColumns().get(position-1).getId();
                 f = NewsListFragment.newInstance(comid);
             }
             mFragmentMap.put(position, f);
@@ -169,12 +169,15 @@ public class NewsMainFragment extends
 
         @Override
         public int getCount() {
-            return columns.size();
+            return columns.size()+1;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return columns.get(position).getName();
+            //对第一个“最新”栏目做特殊处理
+            //TODO 这个"最新"逻辑是否应该合并到columns里更合适？
+            if(position == 0) return "最新";
+            return columns.get(position-1).getName();
         }
     }
 

@@ -5,9 +5,9 @@ import dagger.Provides;
 import wang.mogujun.csdnplus.di.PerFragment;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
-import wang.mogujun.csdnplus.geeknews.domain.interactor.geeknews.GetColumnNewsUseCase;
-import wang.mogujun.csdnplus.geeknews.domain.interactor.geeknews.GetLatestNewsUseCase;
-import wang.mogujun.csdnplus.geeknews.domain.interactor.geeknews.GetNewsColumnUseCase;
+import wang.mogujun.csdnplus.geeknews.domain.interactor.GetColumnNewsUseCase;
+import wang.mogujun.csdnplus.geeknews.domain.interactor.GetLatestNewsUseCase;
+import wang.mogujun.csdnplus.geeknews.domain.interactor.GetNewsColumnUseCase;
 import wang.mogujun.csdnplus.geeknews.domain.repository.NewsRepository;
 
 /**

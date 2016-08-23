@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import wang.mogujun.csdnplus.CSDNApplication;
-import wang.mogujun.csdnplus.geeknews.domain.interactor.geeknews.GetColumnNewsUseCase;
+import wang.mogujun.csdnplus.geeknews.domain.interactor.GetColumnNewsUseCase;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
 import wang.mogujun.csdnplus.view.CSDNSubscriber;
 import wang.mogujun.ext.utils.CollectionUtils;

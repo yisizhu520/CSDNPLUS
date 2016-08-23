@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.di.PerFragment;
-import wang.mogujun.csdnplus.geeknews.domain.interactor.geeknews.GetNewsColumnUseCase;
+import wang.mogujun.csdnplus.geeknews.domain.interactor.GetNewsColumnUseCase;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsColumn;
 import wang.mogujun.csdnplus.view.CSDNSubscriber;
 
