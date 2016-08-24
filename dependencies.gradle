@@ -43,6 +43,7 @@ ext {
     eventBusVersion = '3.0.0'
     glideVersion = '3.7.0'
     glideTransVersion = '2.0.0'
+    commonsLang3Version = '3.4'
 
     //font
     iconicsCoreVersion = '2.6.6@aar'
@@ -95,6 +96,8 @@ ext {
             iconicsCore       : "com.mikepenz:iconics-core:${iconicsCoreVersion}",
             fontGMI           : "com.mikepenz:google-material-typeface:${fontGMIVersion}",
             fontMDI           : "com.mikepenz:material-design-iconic-typeface:${fontMDIVersion}",
+            //tool
+
 
     ]
 

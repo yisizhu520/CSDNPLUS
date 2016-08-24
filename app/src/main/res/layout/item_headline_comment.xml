@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_small">
+
+    <ImageView
+        android:id="@+id/avatarIV"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/default_avatar_img" />
+
+    <com.mikepenz.iconics.view.IconicsImageView
+        android:id="@+id/upIV"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/spacing_small"
+        app:iiv_color="@color/gray_light"
+        app:iiv_icon="gmd-favorite" />
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/spacing_small"
+        android:layout_toRightOf="@+id/avatarIV"
+        android:singleLine="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        tools:text="这里是评论人名字" />
+
+    <TextView
+        android:id="@+id/timeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/nameTV"
+        android:layout_alignBottom="@+id/avatarIV"
+        android:singleLine="true"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        tools:text="今天 17:50" />
+
+    <TextView
+        android:id="@+id/contentTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avatarIV"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        tools:text="这里是评论内容这里是评论内容这里是评论内容这里是评论内容这里是评论内容这里是评论内容这里是评论内容" />
+
+    <com.stevenmoon.csdnplus.widget.CSDNWebView
+        android:id="@+id/contentWV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avatarIV"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/spacing_small" />
+
+
+</RelativeLayout>

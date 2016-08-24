@@ -33,7 +33,7 @@ public abstract class BaseFragment extends CommonFragment {
     @Inject
     protected CSDNNavigator mNavigator;
 
-    protected void initViews(){} ;
+    protected void initViews(){}
 
     protected abstract @LayoutRes int getContentViewId();
 

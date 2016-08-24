@@ -83,6 +83,8 @@ dependencies {
     compile project(':uikit')
     compile project(':ext')
 
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
     compile googleSupportDependencies.appcompatV7
     compile googleSupportDependencies.design
     compile googleSupportDependencies.supportV4
@@ -113,7 +115,7 @@ dependencies {
     compile coreDependencies.iconicsCore
     compile coreDependencies.fontGMI
     compile coreDependencies.fontMDI
-
+    //tool
 
 
 
