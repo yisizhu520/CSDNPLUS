@@ -9,10 +9,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.R;
-import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
 import wang.mogujun.csdnplus.event.NewsItemClickEvent;
+import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
 import wang.mogujun.csdnplus.view.adapter.BaseRecyclerAdapter;
 import wang.mogujun.csdnplus.view.adapter.RecyclerViewHolder;
 import wang.mogujun.ext.utils.DateUtils;
@@ -25,7 +24,6 @@ public class NewsListAdapter extends BaseRecyclerAdapter<NewsListInfo> {
 
     public NewsListAdapter(Context ctx, List<NewsListInfo> list) {
         super(ctx, list);
-        CSDNApplication.getInstance().getApplicationComponent().inject(this);
     }
 
 

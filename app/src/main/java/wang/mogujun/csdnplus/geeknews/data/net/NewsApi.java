@@ -27,5 +27,29 @@ public interface NewsApi {
             @Query("comid") int comid
     );
 
+    @GET("api/v2/geek/detail")
+    Observable<CSDNResponse> getHeadlineDetail(
+            @Query("id") int id
+    );
+
+    @GET("api/geek/community_detail")
+    Observable<CSDNResponse> getCommunityDetail(
+            @Query("childcommunityid") String childcommunityid
+    );
+
+    @GET("api/index/news_newest_comment")
+    Observable<CSDNResponse> getCommentList(
+            @Query("url") String url,
+            @Query("pageno") int pageno,
+            @Query("pagesize") int pagesize
+    );
+
+    @GET("api/index/news_newest_comment")
+    Observable<CSDNResponse> doDetailUpDown(
+            @Query("article_id") int article_id,
+            @Query("status") int status
+    );
+
+
 
 }

@@ -7,4 +7,5 @@ public class DomainConstants {
     public static final String DIRECTION_UP = "up";
     public static final String DIRECTION_DOWN = "down";
 
+    public static final String API_HACKERNEWS = "http://geek.csdn.net/news/detail/";
 }

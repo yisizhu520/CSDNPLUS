@@ -9,8 +9,6 @@ import android.widget.FrameLayout;
 
 import com.bumptech.glide.Glide;
 
-import org.greenrobot.eventbus.Subscribe;
-
 import java.util.List;
 
 import butterknife.BindDimen;
@@ -22,7 +20,6 @@ import in.srain.cube.views.ptr.header.StoreHouseHeader;
 import wang.mogujun.csdnplus.R;
 import wang.mogujun.csdnplus.domain.DomainConstants;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
-import wang.mogujun.csdnplus.event.NewsItemClickEvent;
 import wang.mogujun.csdnplus.view.LazyBaseFragment;
 import wang.mogujun.ext.utils.TipUtils;
 import wang.mogujun.uikit.BorderDividerItemDecoration;
@@ -33,7 +30,7 @@ import wang.mogujun.uikit.loadmore.LoadMoreViewFactory;
  */
 public class NewsListFragment extends
         LazyBaseFragment<NewsListContract.View, NewsListContract.Presenter>
-        implements NewsListContract.View {
+        implements NewsListContract.View,NewsRecyclerAdapter.NewsItemClickListener {
 
     private static final String EXTRA_COMID = "comid";
 
@@ -62,7 +59,6 @@ public class NewsListFragment extends
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getEventBus().register(this);
         if (getArguments() != null) {
             mComid = getArguments().getInt(EXTRA_COMID);
         }
@@ -100,7 +96,7 @@ public class NewsListFragment extends
                 new BorderDividerItemDecoration(mDividerBorderWidth,
                         mDividerBorderWidth));
         mDataRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new NewsRecyclerAdapter(null);
+        mAdapter = new NewsRecyclerAdapter(null,this);
         mDataRv.setAdapter(mAdapter);
         View loadMoreView = LoadMoreViewFactory.createLoadMoreView(getActivity(),1);
         mAdapter.setLoadingView(loadMoreView);
@@ -143,15 +139,15 @@ public class NewsListFragment extends
         return new NewsListPresenter(mComid);
     }
 
-    @Subscribe
-    public void onNewsItemClickEvent(NewsItemClickEvent event) {
-        NewsListInfo item = event.item;
-        switch (event.type) {
-            case NewsItemClickEvent.EVENT_CONTENT_CLICK:
-                showToast("点击了:" + item.getTitle());
-                break;
-        }
+    @Override
+    public void onContentClick(View view, NewsListInfo item) {
+        //TODO 传递这么多参数？改为一个对象是否更好？
+        NewsDetailActivity.showDetail(getActivity(),item.getUser_name(),item.getId(),item.getUrl(),item.getType());
+    }
 
+    @Override
+    public void onAvatarClick(View v, NewsListInfo item) {
+        //TODO 点击头像跳转到个人中心
     }
 
 
@@ -213,6 +209,7 @@ public class NewsListFragment extends
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getEventBus().register(this);
     }
+
+
 }

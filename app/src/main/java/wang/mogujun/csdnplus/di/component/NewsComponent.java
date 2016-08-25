@@ -7,6 +7,7 @@ package wang.mogujun.csdnplus.di.component;
 import dagger.Component;
 import wang.mogujun.csdnplus.di.PerFragment;
 import wang.mogujun.csdnplus.di.module.NewsModule;
+import wang.mogujun.csdnplus.geeknews.NewsDetailPresenter;
 import wang.mogujun.csdnplus.geeknews.NewsLatestPresenter;
 import wang.mogujun.csdnplus.geeknews.NewsListPresenter;
 import wang.mogujun.csdnplus.geeknews.NewsMainPresenter;
@@ -24,5 +25,7 @@ public interface NewsComponent{
     void inject(NewsLatestPresenter presenter);
 
     void inject(NewsListPresenter presenter);
+
+    void inject(NewsDetailPresenter presenter);
 
 }

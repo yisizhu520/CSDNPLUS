@@ -10,7 +10,10 @@ import javax.inject.Singleton;
 import rx.Observable;
 import wang.mogujun.csdnplus.geeknews.data.net.NewsApi;
 import wang.mogujun.csdnplus.data.repository.RepositoryUtils;
+import wang.mogujun.csdnplus.geeknews.domain.model.CommentInfoBean;
+import wang.mogujun.csdnplus.geeknews.domain.model.CommunityDetailBean;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsColumn;
+import wang.mogujun.csdnplus.geeknews.domain.model.NewsDetail;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
 import wang.mogujun.csdnplus.geeknews.domain.repository.NewsRepository;
 
@@ -47,6 +50,27 @@ public class NewsDataRepository implements NewsRepository {
         return RepositoryUtils.extractData(
                 mNewsApi.getColumnNews(page, comid),
                 new TypeToken<List<NewsListInfo>>() {}.getType()
+        );
+    }
+
+    @Override
+    public Observable<NewsDetail> getNewsDetail(int id) {
+        return RepositoryUtils.extractData(
+                mNewsApi.getHeadlineDetail(id), NewsDetail.class
+        );
+    }
+
+    @Override
+    public Observable<CommunityDetailBean> getCommunityDetail(String childcommunityid) {
+        return RepositoryUtils.extractData(
+                mNewsApi.getCommunityDetail(childcommunityid), CommunityDetailBean.class
+        );
+    }
+
+    @Override
+    public Observable<CommentInfoBean> getCommentList(String url, int pageno, int pagesize) {
+        return RepositoryUtils.extractData(
+                mNewsApi.getCommentList(url,pageno,pagesize), CommentInfoBean.class
         );
     }
 

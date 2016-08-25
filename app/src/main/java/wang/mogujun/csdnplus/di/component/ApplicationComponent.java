@@ -16,7 +16,6 @@ import wang.mogujun.csdnplus.user.domain.repository.UserRepository;
 import wang.mogujun.csdnplus.view.BaseActivity;
 import wang.mogujun.csdnplus.view.BaseFragment;
 import wang.mogujun.csdnplus.view.CSDNNavigator;
-import wang.mogujun.csdnplus.geeknews.NewsListAdapter;
 
 /**
  * Created by WangJun on 2016/6/7.
@@ -42,9 +41,5 @@ public interface ApplicationComponent {
     void inject(BaseActivity activity);
 
     void inject(BaseFragment fragment);
-
-    //TODO 抽象出BaseAdapter
-    void inject(NewsListAdapter adapter);
-
 
 }

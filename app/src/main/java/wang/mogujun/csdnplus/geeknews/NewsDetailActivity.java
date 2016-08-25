@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 
+import com.orhanobut.logger.Logger;
+
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
@@ -52,6 +54,7 @@ public class NewsDetailActivity extends BaseActivity {
     @Override
     protected void initViews() {
         super.initViews();
+        Logger.i("NewsDetailActivity initViews");
         //StatusBarUtil.setTranslucentForDrawerLayout(this,mDrawerLayout);
         String username = getIntent().getStringExtra(EXTRA_USERNAME);
         int articleId = getIntent().getIntExtra(EXTRA_ARTICLEID, -1);

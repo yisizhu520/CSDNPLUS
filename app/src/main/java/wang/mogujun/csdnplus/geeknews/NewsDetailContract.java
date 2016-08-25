@@ -5,9 +5,9 @@ import wang.mogujun.csdnplus.geeknews.domain.model.CommunityDetailBean;
 import wang.mogujun.csdnplus.geeknews.domain.model.DetailUpDownInfo;
 import wang.mogujun.csdnplus.geeknews.domain.model.FavoriteOperationInfo;
 import wang.mogujun.csdnplus.geeknews.domain.model.FollowOperationInfo;
-import wang.mogujun.csdnplus.geeknews.domain.model.HeadlineDetailBean;
+import wang.mogujun.csdnplus.geeknews.domain.model.NewsDetail;
 import wang.mogujun.csdnplus.geeknews.domain.model.UserRelationBean;
-import wang.mogujun.uiframework.mvp.MvpBasePresenter;
+import wang.mogujun.csdnplus.view.mvp.MvpRxBasePresenter;
 import wang.mogujun.uiframework.mvp.MvpView;
 
 /**
@@ -23,11 +23,15 @@ public class NewsDetailContract {
 
         void showAuthorInfo(UserRelationBean author);
 
-        void showDetail(HeadlineDetailBean detail);
+        void showDetail(NewsDetail detail);
 
         void showCommunityInfo(CommunityDetailBean community);
 
         void showNewComments(CommentInfoBean commentInfo);
+
+        void showNewCommentsFail();
+
+        void showNewCommentsEmpty();
 
         void showLoadDetailFail();
 
@@ -51,6 +55,8 @@ public class NewsDetailContract {
 
         void showNoMoreComments();
 
+        void showMoreCommentsFail();
+
         void showUpArticleSuccess(DetailUpDownInfo resultBean);
 
         void showUpArticleFail();
@@ -61,7 +67,7 @@ public class NewsDetailContract {
 
     }
 
-    static abstract class Presenter extends MvpBasePresenter<View> {
+    static abstract class Presenter extends MvpRxBasePresenter<View> {
 
         abstract  void loadDetail(String username, final int articleId, final String url, final String type);
 

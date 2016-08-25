@@ -1,7 +1,6 @@
 package wang.mogujun.csdnplus.geeknews;
 
 
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -42,7 +41,7 @@ import wang.mogujun.csdnplus.geeknews.domain.model.DetailUpDownInfo;
 import wang.mogujun.csdnplus.geeknews.domain.model.DetailUpDownReqBean;
 import wang.mogujun.csdnplus.geeknews.domain.model.FavoriteOperationInfo;
 import wang.mogujun.csdnplus.geeknews.domain.model.FollowOperationInfo;
-import wang.mogujun.csdnplus.geeknews.domain.model.HeadlineDetailBean;
+import wang.mogujun.csdnplus.geeknews.domain.model.NewsDetail;
 import wang.mogujun.csdnplus.geeknews.domain.model.UserRelationBean;
 import wang.mogujun.csdnplus.utils.DrawableUtil;
 import wang.mogujun.csdnplus.utils.GlideUtils;
@@ -98,7 +97,7 @@ public class NewsDetailFragment extends
     private BadgeView mUpBadge;
     private String mFavoriteId;
 
-    private HeadlineDetailBean mDetail;
+    private NewsDetail mDetail;
 
     private HeadlineCommentAdapter mCommentAdapter;
     
@@ -149,7 +148,7 @@ public class NewsDetailFragment extends
         initCommentView();
         initOperationLayout();
 
-        presenter.loadDetail(mUsername, mArticleId, mUrl, mType);
+        mRefreshLayout.post(() -> mRefreshLayout.autoRefresh(true));
     }
 
     private void initRefreshView() {
@@ -305,7 +304,7 @@ public class NewsDetailFragment extends
         }
         //TODO 动画效果
 //        ObjectAnimator.ofFloat(mAuthorInfoLayout, "translationY", -300, 0f).setDuration(500).start();
-        ObjectAnimator.ofFloat(mAuthorInfoLayout, "alpha", 0f, 1f).setDuration(500).start();
+        //ObjectAnimator.ofFloat(mAuthorInfoLayout, "alpha", 0f, 1f).setDuration(500).start();
         mAuthorInfoLayout.setVisibility(View.VISIBLE);
     }
 
@@ -322,7 +321,7 @@ public class NewsDetailFragment extends
     }
 
     @Override
-    public void showDetail(HeadlineDetailBean detail) {
+    public void showDetail(NewsDetail detail) {
         mDetail = detail;
 
         GlideUtils.displayCircleAvatar(mAvatarIV, detail.getAvatar());
@@ -345,7 +344,6 @@ public class NewsDetailFragment extends
         getEventBus().post(
                 new DetailChangeEvent(DetailChangeEvent.EVENT_COLLECT, detail.getIs_fav()));
 
-        ObjectAnimator.ofFloat(mOperationLayout, "alpha", 0f, 1f).setDuration(500).start();
         mOperationLayout.setVisibility(View.VISIBLE);
 
     }
@@ -354,34 +352,27 @@ public class NewsDetailFragment extends
     public void showCommunityInfo(CommunityDetailBean community) {
         //更多JAVA话题：18130篇
         mTopicDescTV.setText(getString(R.string.topic_desc, community.getName(), community.getGeekCount()));
-        mMoreTopicLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ObjectAnimator.ofFloat(mMoreTopicLayout, "alpha", 0f, 1f).setDuration(500).start();
-                mMoreTopicLayout.setVisibility(View.VISIBLE);
-            }
-        }, 1000);
-
+        mMoreTopicLayout.setVisibility(View.VISIBLE);
     }
 
 
     @Override
     public void showNewComments(final CommentInfoBean commentInfo) {
-        if (commentInfo.getData() == null || commentInfo.getData().isEmpty()) {
-            //TODO 显示暂无评论的布局
-            showToast("暂无评论");
-            return;
-        }
-        //FIXME 延迟动画会导致打开页面迅速关闭出现空指针，应该在ondestory方法里取消动画
-        mCommentLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mCommentAdapter.setData(commentInfo.getData());
-                ObjectAnimator.ofFloat(mCommentLayout, "alpha", 0f, 1f).setDuration(500).start();
-                mCommentLayout.setVisibility(View.VISIBLE);
-            }
-        }, 1000);//TODO 有没有更好的解决办法？
+        mCommentAdapter.setData(commentInfo.getData());
+        mCommentLayout.setVisibility(View.VISIBLE);
 
+    }
+
+    @Override
+    public void showNewCommentsFail() {
+        //TODO 加载评论失败的处理
+        showToast("加载评论失败");
+    }
+
+    @Override
+    public void showNewCommentsEmpty() {
+        //TODO 评论为空的时候的处理
+        showToast("评论为空");
     }
 
     @Override
@@ -473,6 +464,12 @@ public class NewsDetailFragment extends
     }
 
     @Override
+    public void showMoreCommentsFail() {
+        //TODO 加载更多评论失败处理
+        showToast("加载更多评论失败");
+    }
+
+    @Override
     public void showUpArticleSuccess(DetailUpDownInfo resultBean) {
         //TODO 所有的状态数值都应该定义成常量!
         //getStatus() == 1 已点赞 -1：已取消点赞
@@ -501,12 +498,12 @@ public class NewsDetailFragment extends
 
     @Override
     public void showDownArticleSucess() {
-
+        showToast("文章点赞成功");
     }
 
     @Override
     public void showDownArticleFail() {
-
+        showToast("文章点赞失败");
     }
 
 

@@ -197,7 +197,7 @@
                     />
 
 
-                <com.stevenmoon.csdnplus.widget.CSDNWebView
+                <wang.mogujun.csdnplus.widget.CSDNWebView
                     android:id="@+id/contentWV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
