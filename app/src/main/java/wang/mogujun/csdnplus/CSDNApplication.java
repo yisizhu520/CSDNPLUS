@@ -36,11 +36,11 @@ public class CSDNApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        initLogger();
         //TODO 在ext包里构建基础preference
         LoginPrefs.init(this);
         UserDetailPrefs.init(this);
         initInjector();
-        initLogger();
         initLeakCanary();
         initBlockCanary();
         initRealm();

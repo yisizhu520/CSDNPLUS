@@ -19,7 +19,7 @@ allprojects {
     ext {
         androidApplicationId = 'wang.mogujun.csdnplus'
         androidVersionCode = 1
-        androidVersionName = "1.0"
+        androidVersionName = "1.9.1"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         testApplicationId = 'wang.mogujun.csdnplus.test'
     }

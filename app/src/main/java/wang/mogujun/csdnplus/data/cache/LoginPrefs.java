@@ -68,20 +68,18 @@ public class LoginPrefs {
                 return "";
             }
             str1 = SecurityV2Util.DESEncrypt(getKey(), str1);
+            try {
+                return URLEncoder.encode(str1, "UTF-8");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-//        try {
-////            return URLEncoder.encode(str1, "UTF-8");
-//            return str1;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
         return str1;
     }
 
     public static void init(Application paramApplication){
-        if (loginPref == null) {
-            loginPref = paramApplication.getSharedPreferences("loginPref", 0);
-        }
+        getSharedPreferences(paramApplication);
     }
 
     public static SharedPreferences getSharedPreferences(Application paramApplication) {
@@ -96,6 +94,8 @@ public class LoginPrefs {
                     str1 = str2.substring(0, 3);
                 }
             }
+            //TODO 这里用了版本号作为key来加密sessionIdyisizhu52
+            //Logger.i("simpleVersionName:"+str1);
             str1 = SecurityV2Util.getSignatureByMD5("csdn-android-" + str2.substring(0, 3));
             loginPref.edit().putString("key", str1).putString("versionName", str2).putString("simpleVersionName", str1).apply();
         } catch (PackageManager.NameNotFoundException e) {

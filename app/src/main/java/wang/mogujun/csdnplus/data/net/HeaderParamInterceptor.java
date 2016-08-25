@@ -41,7 +41,7 @@ public class HeaderParamInterceptor implements Interceptor {
             }else{
                 sb.append("?");
             }
-            sb.append("?SessionId=").append(sessionId);
+            sb.append("SessionId=").append(sessionId);
             requestBuilder.url(sb.toString());
         }
 

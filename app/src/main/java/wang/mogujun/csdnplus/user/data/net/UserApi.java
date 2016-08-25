@@ -19,7 +19,7 @@ public interface UserApi {
 
     @GET("api/user/relation")
     Observable<CSDNResponse> getRelationWith(
-            @Query("page") String username
+            @Query("username") String username
     );
 
 
