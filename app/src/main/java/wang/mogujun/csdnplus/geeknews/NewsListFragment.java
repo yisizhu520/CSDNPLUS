@@ -22,7 +22,7 @@ import wang.mogujun.csdnplus.domain.DomainConstants;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
 import wang.mogujun.csdnplus.view.LazyBaseFragment;
 import wang.mogujun.ext.utils.TipUtils;
-import wang.mogujun.uikit.BorderDividerItemDecoration;
+import wang.mogujun.uikit.decorator.BorderDividerItemDecoration;
 import wang.mogujun.uikit.loadmore.LoadMoreViewFactory;
 
 /**

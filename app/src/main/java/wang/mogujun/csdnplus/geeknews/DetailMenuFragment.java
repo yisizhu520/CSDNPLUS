@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
@@ -24,6 +23,7 @@ import wang.mogujun.csdnplus.event.DetailMenuClickEvent;
 import wang.mogujun.csdnplus.view.BaseFragment;
 import wang.mogujun.csdnplus.view.adapter.BaseRecyclerAdapter;
 import wang.mogujun.csdnplus.view.adapter.RecyclerViewHolder;
+import wang.mogujun.uikit.decorator.HorizontalDividerItemDecoration;
 
 /**
  * Created by WangJun on 2016/4/29.
@@ -48,12 +48,11 @@ public class DetailMenuFragment extends BaseFragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setAutoMeasureEnabled(true);
         mMenuRV.setLayoutManager(llm);
-        //TODO 加上分割线
-//        mMenuRV.addItemDecoration(new HorizontalDividerItemDecoration
-//                .Builder(getActivity())
-//                .marginResId(R.dimen.spacing_normal)
-//                .colorResId(R.color.white_light)
-//                .build());
+        mMenuRV.addItemDecoration(new HorizontalDividerItemDecoration
+                .Builder(getActivity())
+                .marginResId(R.dimen.spacing_normal)
+                .colorResId(R.color.white_light)
+                .build());
 
         List<DetailMenuItem> items = new ArrayList<>(5);
 
@@ -140,12 +139,7 @@ public class DetailMenuFragment extends BaseFragment {
         public void bindData(RecyclerViewHolder holder, final int position, final DetailMenuItem item) {
             holder.setText(R.id.titleTV, item.title);
             holder.setImageDrawable(R.id.iconIV, item.drawable);
-            holder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CSDNApplication.getInstance().getApplicationComponent().eventBus().post(new DetailMenuClickEvent(position));
-                    }
-            });
+            holder.setOnClickListener(v -> getEventBus().post(new DetailMenuClickEvent(position)));
         }
     }
 

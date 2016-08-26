@@ -73,8 +73,7 @@ public class NewsDetailFragment extends
     @BindView(R.id.commentLV) RecyclerView mCommentLV;
     @BindView(R.id.toolbarLayout) View mToolbarLayout;
     @BindView(R.id.menuIV) View mMenuIV;
-    @BindView(R.id.detailSV)
-    ScrollView mDetailSV;
+    @BindView(R.id.detailSV) ScrollView mDetailSV;
     @BindView(R.id.operationLayout) View mOperationLayout;
     @BindView(R.id.writeCommentTV) TextView mWriteCommentTV;
     @BindView(R.id.upIV) ImageView mUpIV;
@@ -125,6 +124,7 @@ public class NewsDetailFragment extends
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getEventBus().register(this);
         mUsername = getArguments().getString(NewsDetailActivity.EXTRA_USERNAME);
         mArticleId = getArguments().getInt(NewsDetailActivity.EXTRA_ARTICLEID, -1);
         mUrl = getArguments().getString(NewsDetailActivity.EXTRA_URL);
@@ -510,7 +510,11 @@ public class NewsDetailFragment extends
     }
 
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getEventBus().unregister(this);
+    }
 
 
 }

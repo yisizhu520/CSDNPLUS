@@ -15,7 +15,7 @@ import wang.mogujun.csdnplus.R;
 import wang.mogujun.csdnplus.event.DetailMenuClickEvent;
 import wang.mogujun.csdnplus.event.DetailMenuToggleEvent;
 import wang.mogujun.csdnplus.view.BaseActivity;
-import wang.mogujun.uikit.SwipeBackLayout;
+import wang.mogujun.uikit.swipeback.SwipeBackLayout;
 
 public class NewsDetailActivity extends BaseActivity {
 
@@ -42,7 +42,8 @@ public class NewsDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //TODO 可以将swipeBack这个功能抽取到它的类里，使用attach来绑定activity
-        mSwipeBackLayout.setCallBack(this::finish);
+        //mSwipeBackLayout.setCallBack(this::finish);
+        getEventBus().register(this);
     }
 
     @Override
@@ -95,5 +96,11 @@ public class NewsDetailActivity extends BaseActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getEventBus().unregister(this);
     }
 }

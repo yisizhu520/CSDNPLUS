@@ -1,4 +1,4 @@
-package wang.mogujun.uikit;
+package wang.mogujun.uikit.decorator;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

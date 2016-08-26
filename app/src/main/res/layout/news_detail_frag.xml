@@ -56,87 +56,7 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
 
-
-            <RelativeLayout
-                android:id="@+id/authorInfoLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:padding="@dimen/spacing_small"
-                android:visibility="gone"
-                app:layout_scrollFlags="scroll|enterAlways"
-                tools:visibility="visible"
-                >
-
-
-                <ImageView
-                    android:id="@+id/avatarIV"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:scaleType="centerCrop"
-                    tools:src="@drawable/default_avatar_img"
-                    />
-
-                <TextView
-                    android:id="@+id/nameTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/spacing_small"
-                    android:layout_toRightOf="@+id/avatarIV"
-                    android:maxWidth="200dp"
-                    android:singleLine="true"
-                    android:textColor="#707070"
-                    android:textSize="14sp"
-                    tools:text="英明神武蘑菇君"
-                    />
-
-                <TextView
-                    android:id="@+id/dateTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/avatarIV"
-                    android:layout_alignLeft="@+id/nameTV"
-                    android:singleLine="true"
-                    android:textColor="#B7B7B7"
-                    android:textSize="12sp"
-                    tools:text="2016-04-18"
-                    />
-
-                <Button
-                    android:id="@+id/followBtn"
-                    android:layout_width="60dp"
-                    android:layout_height="36dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@color/colorAccent"
-                    android:text="关注"
-                    android:textColor="@color/white"
-                    />
-
-            </RelativeLayout>
-
-            <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:indeterminate="true"
-                app:spb_color="@color/colorAccent"
-                app:spb_mirror_mode="false"
-                app:spb_progressiveStart_activated="true"
-                app:spb_progressiveStart_speed="1.5"
-                app:spb_progressiveStop_speed="3.4"
-                app:spb_reversed="false"
-                app:spb_sections_count="4"
-                app:spb_speed="2.0"
-                app:spb_stroke_separator_length="4dp"
-                app:spb_stroke_width="3dp"
-                />
-        </FrameLayout>
 
 
     </android.support.design.widget.AppBarLayout>
@@ -172,6 +92,88 @@
                 android:layout_marginTop="@dimen/spacing_normal"
                 android:orientation="vertical"
                 >
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+
+                    <RelativeLayout
+                        android:id="@+id/authorInfoLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:padding="@dimen/spacing_small"
+                        android:visibility="gone"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        tools:visibility="visible"
+                        >
+
+
+                        <ImageView
+                            android:id="@+id/avatarIV"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:scaleType="centerCrop"
+                            tools:src="@drawable/default_avatar_img"
+                            />
+
+                        <TextView
+                            android:id="@+id/nameTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_small"
+                            android:layout_toRightOf="@+id/avatarIV"
+                            android:maxWidth="200dp"
+                            android:singleLine="true"
+                            android:textColor="#707070"
+                            android:textSize="14sp"
+                            tools:text="英明神武蘑菇君"
+                            />
+
+                        <TextView
+                            android:id="@+id/dateTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/avatarIV"
+                            android:layout_alignLeft="@+id/nameTV"
+                            android:singleLine="true"
+                            android:textColor="#B7B7B7"
+                            android:textSize="12sp"
+                            tools:text="2016-04-18"
+                            />
+
+                        <Button
+                            android:id="@+id/followBtn"
+                            android:layout_width="60dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@color/colorAccent"
+                            android:text="关注"
+                            android:textColor="@color/white"
+                            />
+
+                    </RelativeLayout>
+
+                    <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:indeterminate="true"
+                        app:spb_color="@color/colorAccent"
+                        app:spb_mirror_mode="false"
+                        app:spb_progressiveStart_activated="true"
+                        app:spb_progressiveStart_speed="1.5"
+                        app:spb_progressiveStop_speed="3.4"
+                        app:spb_reversed="false"
+                        app:spb_sections_count="4"
+                        app:spb_speed="2.0"
+                        app:spb_stroke_separator_length="4dp"
+                        app:spb_stroke_width="3dp"
+                        />
+                </FrameLayout>
 
 
                 <TextView

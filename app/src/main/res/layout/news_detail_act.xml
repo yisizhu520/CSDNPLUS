@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     >
 
-    <wang.mogujun.uikit.SwipeBackLayout
+    <wang.mogujun.uikit.swipeback.SwipeBackLayout
         android:id="@+id/swipeBackLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             />
 
-    </wang.mogujun.uikit.SwipeBackLayout>
+    </wang.mogujun.uikit.swipeback.SwipeBackLayout>
 
     <FrameLayout
         android:id="@+id/menuContainer"
