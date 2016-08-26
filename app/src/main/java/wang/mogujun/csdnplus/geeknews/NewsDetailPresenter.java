@@ -9,6 +9,10 @@ import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.domain.DomainConstants;
 import wang.mogujun.csdnplus.geeknews.domain.model.CommentInfoBean;
 import wang.mogujun.csdnplus.geeknews.domain.model.CommunityDetailBean;
+import wang.mogujun.csdnplus.geeknews.domain.model.DetailUpDownInfo;
+import wang.mogujun.csdnplus.geeknews.domain.model.FavoriteOperationInfo;
+import wang.mogujun.csdnplus.geeknews.domain.model.FavoriteOperationReqBean;
+import wang.mogujun.csdnplus.geeknews.domain.model.FollowOperationInfo;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsDetail;
 import wang.mogujun.csdnplus.geeknews.domain.model.UserRelationBean;
 import wang.mogujun.csdnplus.geeknews.domain.repository.NewsRepository;
@@ -28,8 +32,6 @@ public class NewsDetailPresenter extends NewsDetailContract.Presenter {
 
     private UserRelationBean userRelationBean;
     private NewsDetail headlineInfoBean;
-    private CommunityDetailBean communityDetailBean;
-    private CommentInfoBean commentInfoBean;
 
     public NewsDetailPresenter(){
         CSDNApplication.getInstance().getNewsComponent().inject(this);
@@ -142,26 +144,140 @@ public class NewsDetailPresenter extends NewsDetailContract.Presenter {
 
     @Override
     void doDetailUpDown(int articleId, String typeStr, int status) {
+        getView().showLoadingView();
+        String url_type;
+        if(typeStr.contains("hackernews")){
+            url_type = "geek_up_down";
+        }else{
+            url_type = "news_up_down";
+        }
+        Subscription s = mNewsRepository.doDetailUpDown(url_type,articleId,status)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CSDNSubscriber<DetailUpDownInfo>(){
 
+                    @Override
+                    protected void onErrorMsg(String errorMsg) {
+                        super.onErrorMsg(errorMsg);
+                        getView().showUpArticleFail();
+                        getView().hideLoadingView();
+                    }
+
+                    @Override
+                    public void onNext(DetailUpDownInfo resultBean) {
+                        getView().showUpArticleSuccess(resultBean);
+                        getView().hideLoadingView();
+                    }
+
+                });
+        add(s);
     }
 
     @Override
     void addFavorite(String url, String username, String title) {
+        getView().showLoadingView();
+        FavoriteOperationReqBean reqBean = new FavoriteOperationReqBean();
+        reqBean.setUrl(url).setUsername(username).setTitle(title);
+        Subscription s = mUserRepository.addFavorite(reqBean)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CSDNSubscriber<FavoriteOperationInfo>(){
+
+                    @Override
+                    protected void onErrorMsg(String errorMsg) {
+                        super.onErrorMsg(errorMsg);
+                        getView().showCollectFail();
+                        getView().hideLoadingView();
+                    }
+
+                    @Override
+                    public void onNext(FavoriteOperationInfo resultBean) {
+                        getView().showCollectSuccess(resultBean);
+                        getView().hideLoadingView();
+                    }
+
+                });
+        add(s);
 
     }
 
     @Override
     void deleteFavorite(String url, String username, String title) {
+        getView().showLoadingView();
+        FavoriteOperationReqBean reqBean = new FavoriteOperationReqBean();
+        reqBean.setUrl(url).setUsername(username).setTitle(title);
+        Subscription s = mUserRepository.addFavorite(reqBean)
+                .flatMap(favoriteOperationInfo -> {
+                    FavoriteOperationReqBean reqBean1 = new FavoriteOperationReqBean();
+                    reqBean1.setId(favoriteOperationInfo.getData().getId()).setUsername(username);
+                    return mUserRepository.deleteFavorite(reqBean1);
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CSDNSubscriber<FavoriteOperationInfo>() {
 
+                    @Override
+                    protected void onErrorMsg(String errorMsg) {
+                        super.onErrorMsg(errorMsg);
+                        getView().showUnCollectFail();
+                        getView().hideLoadingView();
+                    }
+
+                    @Override
+                    public void onNext(FavoriteOperationInfo resultBean) {
+                        getView().showUnCollectSuccess(resultBean);
+                        getView().hideLoadingView();
+                    }
+                });
+        add(s);
     }
 
     @Override
     void doFollow(String username, String fans) {
+        getView().showLoadingView();
+        Subscription s = mUserRepository.doFollow(username,fans)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CSDNSubscriber<FollowOperationInfo>() {
 
+                    @Override
+                    protected void onErrorMsg(String errorMsg) {
+                        super.onErrorMsg(errorMsg);
+                        getView().showAddFollowFail();
+                        getView().hideLoadingView();
+                    }
+
+                    @Override
+                    public void onNext(FollowOperationInfo resultBean) {
+                        getView().showAddFollowSuccess(resultBean);
+                        getView().hideLoadingView();
+                    }
+                });
+        add(s);
     }
 
     @Override
     void unFollow(String username, String fans) {
+        getView().showLoadingView();
+        Subscription s = mUserRepository.unFollow(username,fans)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CSDNSubscriber<FollowOperationInfo>() {
 
+                    @Override
+                    protected void onErrorMsg(String errorMsg) {
+                        super.onErrorMsg(errorMsg);
+                        getView().showAddFollowFail();
+                        getView().hideLoadingView();
+                    }
+
+
+                    @Override
+                    public void onNext(FollowOperationInfo resultBean) {
+                        getView().showAddFollowSuccess(resultBean);
+                        getView().hideLoadingView();
+                    }
+                });
+        add(s);
     }
 }

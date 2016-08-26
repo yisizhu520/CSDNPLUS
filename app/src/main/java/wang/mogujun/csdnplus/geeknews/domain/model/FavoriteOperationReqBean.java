@@ -14,13 +14,13 @@ public class FavoriteOperationReqBean {
     private String url;
     private String username;
     private String title;
-    private String id;
+    private int id;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public FavoriteOperationReqBean setId(String id) {
+    public FavoriteOperationReqBean setId(int id) {
         this.id = id;
         return this;
     }

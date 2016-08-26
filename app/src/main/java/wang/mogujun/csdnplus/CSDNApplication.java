@@ -2,7 +2,6 @@ package wang.mogujun.csdnplus;
 
 import android.app.Application;
 
-import com.orhanobut.logger.AndroidLogTool;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
@@ -77,8 +76,8 @@ public class CSDNApplication extends Application {
                 .methodCount(2)                 // default 2
                 .hideThreadInfo()               // default shown
                 .logLevel(LogLevel.FULL)        // default LogLevel.FULL
-                .methodOffset(2)                // default 0
-                .logTool(new AndroidLogTool()); // custom log tool, optional
+                .methodOffset(0)  ;             // default 0
+                //.logAdapter(new AndroidLogAdapter()); // custom log tool, optional
     }
 
     public ApplicationComponent getApplicationComponent(){

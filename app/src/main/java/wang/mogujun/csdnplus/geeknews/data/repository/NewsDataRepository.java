@@ -8,14 +8,19 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rx.Observable;
-import wang.mogujun.csdnplus.geeknews.data.net.NewsApi;
 import wang.mogujun.csdnplus.data.repository.RepositoryUtils;
+import wang.mogujun.csdnplus.geeknews.data.net.NewsApi;
 import wang.mogujun.csdnplus.geeknews.domain.model.CommentInfoBean;
 import wang.mogujun.csdnplus.geeknews.domain.model.CommunityDetailBean;
+import wang.mogujun.csdnplus.geeknews.domain.model.DetailUpDownInfo;
+import wang.mogujun.csdnplus.geeknews.domain.model.HeadlineCommentInfo;
+import wang.mogujun.csdnplus.geeknews.domain.model.HeadlineCommentReqBean;
+import wang.mogujun.csdnplus.geeknews.domain.model.HeadlineCommentUpDownInfo;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsColumn;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsDetail;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
 import wang.mogujun.csdnplus.geeknews.domain.repository.NewsRepository;
+import wang.mogujun.ext.utils.JsonUtils;
 
 /**
  * Created by WangJun on 2016/6/25.
@@ -73,5 +78,34 @@ public class NewsDataRepository implements NewsRepository {
                 mNewsApi.getCommentList(url,pageno,pagesize), CommentInfoBean.class
         );
     }
+
+    @Override
+    public Observable<DetailUpDownInfo> doDetailUpDown(String url_type, int article_id, int status) {
+        return RepositoryUtils.extractData(
+                mNewsApi.doDetailUpDown(url_type,article_id,status), DetailUpDownInfo.class
+        );
+    }
+
+    @Override
+    public Observable<HeadlineCommentUpDownInfo> doCommentUp(String username, String commentId) {
+        return RepositoryUtils.extractData(
+                mNewsApi.doCommentUp(username,commentId), HeadlineCommentUpDownInfo.class
+        );
+    }
+
+    @Override
+    public Observable<HeadlineCommentUpDownInfo> doCommentDown(String username, String commentId) {
+        return RepositoryUtils.extractData(
+                mNewsApi.doCommentDown(username,commentId), HeadlineCommentUpDownInfo.class
+        );
+    }
+
+    @Override
+    public Observable<HeadlineCommentInfo> addComment(HeadlineCommentReqBean reqBean) {
+        return RepositoryUtils.extractData(
+                mNewsApi.addComment(JsonUtils.convertBean2Map(reqBean)), HeadlineCommentInfo.class
+        );
+    }
+
 
 }

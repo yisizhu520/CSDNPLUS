@@ -24,6 +24,7 @@ import retrofit2.Retrofit;
 import retrofit2.Retrofit.Builder;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import wang.mogujun.csdnplus.BuildConfig;
 
 
 /**
@@ -35,7 +36,7 @@ public class ApiService {
 
     private static String TAG = "ApiService";
     //FIXME 应该可以用什么配置来代替这个变量，是DEBUG还是RELEASE
-    private static final boolean IS_DEV = true;
+    private static final boolean IS_DEV = BuildConfig.DEBUG;
 
 
     private Retrofit mRetrofit;

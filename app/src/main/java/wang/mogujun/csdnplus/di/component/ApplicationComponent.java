@@ -2,6 +2,8 @@ package wang.mogujun.csdnplus.di.component;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Singleton;
@@ -27,6 +29,8 @@ public interface ApplicationComponent {
     Context context();
 
     EventBus eventBus();
+
+    Gson gson();
 
     PostExecutionThread postExecutionThread();
 

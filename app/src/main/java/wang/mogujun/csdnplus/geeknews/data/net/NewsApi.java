@@ -1,6 +1,12 @@
 package wang.mogujun.csdnplus.geeknews.data.net;
 
+import java.util.Map;
+
+import retrofit2.http.Body;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 import wang.mogujun.csdnplus.domain.model.CSDNResponse;
@@ -44,11 +50,32 @@ public interface NewsApi {
             @Query("pagesize") int pagesize
     );
 
-    @GET("api/index/news_newest_comment")
+    @GET("api/index/{url_type}")
     Observable<CSDNResponse> doDetailUpDown(
+            @Path("url_type") String url_type,
             @Query("article_id") int article_id,
             @Query("status") int status
     );
+
+    @GET("api/index/news_comment_up")
+    Observable<CSDNResponse> doCommentUp(
+            @Query("username") String username,
+            @Query("id") String commentId
+    );
+
+    @GET("api/index/news_comment_down")
+    Observable<CSDNResponse> doCommentDown(
+            @Query("username") String username,
+            @Query("id") String commentId
+    );
+
+    @POST("api/index/news_add_comment")
+    @FormUrlEncoded
+    Observable<CSDNResponse> addComment(
+            @Body Map<String, String> params
+    );
+
+
 
 
 

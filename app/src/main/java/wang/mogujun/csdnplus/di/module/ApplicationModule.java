@@ -2,6 +2,9 @@ package wang.mogujun.csdnplus.di.module;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Singleton;
@@ -12,11 +15,11 @@ import wang.mogujun.csdnplus.BuildConfig;
 import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.UIThread;
 import wang.mogujun.csdnplus.data.executor.JobExecutor;
-import wang.mogujun.csdnplus.geeknews.data.repository.NewsDataRepository;
-import wang.mogujun.csdnplus.user.data.repository.UserDataRepository;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
+import wang.mogujun.csdnplus.geeknews.data.repository.NewsDataRepository;
 import wang.mogujun.csdnplus.geeknews.domain.repository.NewsRepository;
+import wang.mogujun.csdnplus.user.data.repository.UserDataRepository;
 import wang.mogujun.csdnplus.user.domain.repository.UserRepository;
 import wang.mogujun.csdnplus.view.CSDNNavigator;
 
@@ -47,6 +50,13 @@ public class ApplicationModule {
                 .throwSubscriberException(BuildConfig.DEBUG)
                 .logNoSubscriberMessages(BuildConfig.DEBUG)
                 .build();
+    }
+
+    @Singleton
+    @Provides
+    Gson provideGson(){
+        Gson gson = new GsonBuilder().create();
+        return gson;
     }
 
     @Singleton

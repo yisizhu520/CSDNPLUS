@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 
 /**
  * Created by SilenceDut on 2015/12/8.
+ * TODO 应该可以设置成边缘滑动
  */
 public class SwipeBackLayout extends FrameLayout {
 

@@ -8,13 +8,13 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
@@ -73,7 +73,8 @@ public class NewsDetailFragment extends
     @BindView(R.id.commentLV) RecyclerView mCommentLV;
     @BindView(R.id.toolbarLayout) View mToolbarLayout;
     @BindView(R.id.menuIV) View mMenuIV;
-    @BindView(R.id.detailSV) NestedScrollView mDetailSV;
+    @BindView(R.id.detailSV)
+    ScrollView mDetailSV;
     @BindView(R.id.operationLayout) View mOperationLayout;
     @BindView(R.id.writeCommentTV) TextView mWriteCommentTV;
     @BindView(R.id.upIV) ImageView mUpIV;
@@ -95,7 +96,7 @@ public class NewsDetailFragment extends
 
     private BadgeView mCommentBadge;
     private BadgeView mUpBadge;
-    private String mFavoriteId;
+    private int mFavoriteId;
 
     private NewsDetail mDetail;
 
@@ -168,7 +169,7 @@ public class NewsDetailFragment extends
 
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, mContentWV, header);
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, mDetailSV, header);
             }
         });
     }
@@ -292,6 +293,7 @@ public class NewsDetailFragment extends
     @Override
     public void hideLoadingView() {
         mProgressBar.setVisibility(View.GONE);
+        mRefreshLayout.refreshComplete();
     }
 
     @Override
@@ -377,6 +379,7 @@ public class NewsDetailFragment extends
 
     @Override
     public void showLoadDetailFail() {
+        mRefreshLayout.refreshComplete();
         TipUtils.showSnack(mOperationLayout, "文章内容加载失败(。﹏。*)", "重试", new View.OnClickListener() {
             @Override
             public void onClick(View v) {

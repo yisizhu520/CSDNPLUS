@@ -34,8 +34,11 @@ public class RepositoryUtils {
             if (response == null) {
                 return Observable.error(new NetworkConnectionException());
             } else if (response.getCode() == ResponseException.CODE_SUCCESS) {
-                //Logger.json(mGson.toJson(response.getData()));
-                return Observable.just(mGson.fromJson(mGson.toJson(response.getData()), type));
+                String json = mGson.toJson(response.getData());
+                if(json.length() < 1000){//过滤掉太长的日志，比如列表输出
+                   Logger.json(json);
+                }
+                return Observable.just(mGson.fromJson(json, type));
             } else {
                 Logger.e("response error--code:%s,message:s",response.getCode(),response.getMessage());
                 return Observable.error(new ResponseException(response));

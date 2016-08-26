@@ -8,12 +8,15 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.Map;
 
 public class JsonUtils {
     public static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
     public static final boolean DEFAULT_EXCLUDES_FIELDS_WITHOUT_EXPOSE = false;
     public static final String EMPTY_JSON = "{}";
     public static final String EMPTY_JSON_ARRAY = "[]";
+
+    private static final Gson mGson = new Gson();
 
     public static String toJson(Object target) {
         return toJson(target, null, DEFAULT_EXCLUDES_FIELDS_WITHOUT_EXPOSE, null, null, DEFAULT_EXCLUDES_FIELDS_WITHOUT_EXPOSE);
@@ -138,5 +141,11 @@ public class JsonUtils {
 
     public static <T> T fromJson(String json, TypeToken<T> token, String datePattern) {
         return fromJson(json, token.getType(), datePattern);
+    }
+
+    public static Map<String,String> convertBean2Map(Object reqBean){
+        String json = mGson.toJson(reqBean);
+        return  mGson.fromJson(
+                json,new TypeToken<Map<String,String>>(){}.getType());
     }
 }
