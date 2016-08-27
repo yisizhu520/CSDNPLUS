@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -16,12 +15,22 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+
+import wang.mogujun.csdnplus.data.cache.UserDetailPrefs;
+import wang.mogujun.csdnplus.view.PhotoViewActivity;
+import wang.mogujun.ext.utils.StringUtils;
 
 public class CSDNWebView extends WebView {
 
     private GestureDetector mGestureDetector;
+
+    private int codeIndex;
+
 
     public CSDNWebView(Context paramContext) {
         super(paramContext);
@@ -74,40 +83,65 @@ public class CSDNWebView extends WebView {
     /**
      * 用本地的css与html来包装详情内容
      *
-     * @param paramString 内容数据或评论数据
-     * @param paramInt    0：内容   1：评论
+     * @param text 内容数据或评论数据
+     * @param flag    0：内容   1：评论
      */
-    public void loadDataWithWrap(String paramString, int paramInt) {
-        String localObject = "";
-        try {
-            //TODO 夜间模式的处理
-//            if (!CSDNApp.isDayFlag) {
-//                if (paramInt == 0) {
-//                    setBackgroundColor(getContext().getResources().getColor(R.color.webview_bg));
-//                    String str1 = IOUtils.toString(getContext().getAssets().open("htmlwrap_night.html"));
-//                    localObject = str1;
-//                }
-//                if (paramInt == 1) {
-//                    setBackgroundColor(getContext().getResources().getColor(R.color.webview_bg));
-//                    localObject = IOUtils.toString(getContext().getAssets().open("htmlwrap_comment_night.html"));
-//                }
-//            } else
+    public void loadDataWithWrap(String text, int flag) {
+        loadDataWithWrap("",text,flag);
+    }
 
-            if (paramInt == 0) {
-                localObject = IOUtils.toString(getContext().getAssets().open("htmlwrap.html"));
-            } else if (paramInt == 1) {
-                String str2 = IOUtils.toString(getContext().getAssets().open("htmlwrap_comment.html"));
-                localObject = str2;
+    /**
+     *
+     * @param baseUrl
+     * @param text
+     * @param flag 0：内容   1：评论
+     */
+    public void loadDataWithWrap(String baseUrl, String text, int flag) {
+        String html = "";
+        String htmlSytleFileName = "htmlwrap_middle.html";
+        //TODO 根据手机屏幕设置字体大小
+        String textFontSize = UserDetailPrefs.getTextFontSizeSet();
+        //TODO 夜间模式的处理
+        //CSDNApp.isDayFlag
+        if (1==1) {
+            if (flag == 0) {
+                if (UserDetailPrefs.SMALL_TEXT_FONT_SIZE.equals(textFontSize)) {
+                    htmlSytleFileName = "htmlwrap_small.html";
+                } else if (UserDetailPrefs.MIDDLE_TEXT_FONT_SIZE.equals(textFontSize)) {
+                    htmlSytleFileName = "htmlwrap_middle.html";
+                } else if (UserDetailPrefs.LARGE_TEXT_FONT_SIZE.equals(textFontSize)) {
+                    htmlSytleFileName = "htmlwrap_large.html";
+                }
+            } else if (flag == 1) {
+                htmlSytleFileName = "htmlwrap_comment.html";
             }
-            if (!TextUtils.isEmpty(localObject))
-                paramString = localObject.replace("replace", paramString);
-            loadDataWithBaseURL("", paramString, "text/html", "utf-8", "");
-
-
-        } catch (Exception e) {
+        } else if (flag == 0) {
+            //TODO 内容夜间模式背景颜色
+            //setBackgroundColor(getContext().getResources().getColor(R.color.background_night_big));
+            if (UserDetailPrefs.SMALL_TEXT_FONT_SIZE.equals(textFontSize)) {
+                htmlSytleFileName = "htmlwrap_night_small.html";
+            } else if (UserDetailPrefs.MIDDLE_TEXT_FONT_SIZE.equals(textFontSize)) {
+                htmlSytleFileName = "htmlwrap_night_middle.html";
+            } else if (UserDetailPrefs.LARGE_TEXT_FONT_SIZE.equals(textFontSize)) {
+                htmlSytleFileName = "htmlwrap_night_large.html";
+            }
+        } else if (flag == 1) {
+            //TODO 评论夜间模式背景颜色
+            //setBackgroundColor(getContext().getResources().getColor(R.color.background_night));
+            htmlSytleFileName = "htmlwrap_comment_night.html";
+        }
+        try {
+            html = IOUtils.toString(getContext().getAssets().open(htmlSytleFileName));
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        if (!StringUtils.isEmpty(html)) {
+            text = html.replace("replace", text);
+        }
+        loadDataWithBaseURL(baseUrl, text, "text/html", "utf-8", null);
     }
+
+
 
     class JsObject {
         JsObject() {
@@ -126,8 +160,8 @@ public class CSDNWebView extends WebView {
             Intent localIntent = new Intent();
             localBundle.putString("imageUrl", paramString);
             localIntent.putExtras(localBundle);
-//            localIntent.setClass(CSDNWebView.this.getContext(), PhotoViewActivity_.class);
-//            CSDNWebView.this.getContext().startActivity(localIntent);
+            localIntent.setClass(CSDNWebView.this.getContext(), PhotoViewActivity.class);
+            CSDNWebView.this.getContext().startActivity(localIntent);
         }
 
 //        @JavascriptInterface
@@ -136,18 +170,17 @@ public class CSDNWebView extends WebView {
 //            CSDNWebView.this.mPreventParentTouch = true;
 //        }
 //
-//        @JavascriptInterface
-//        public void toast(String paramString)
-//        {
-//            Toast.makeText(CSDNWebView.this.getContext(), paramString, 0).show();
-//        }
-//
-//        @JavascriptInterface
-//        public void touchCode(int paramInt)
-//        {
-//            CSDNWebView.this.codeIndex = paramInt;
-//        }
-//    }
+        @JavascriptInterface
+        public void toast(String paramString)
+        {
+            Toast.makeText(CSDNWebView.this.getContext(), paramString, 0).show();
+        }
+
+        @JavascriptInterface
+        public void touchCode(int index)
+        {
+            CSDNWebView.this.codeIndex = index;
+        }
     }
 
     private WebViewLoadListener mWebViewLoadListener;

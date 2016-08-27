@@ -219,6 +219,21 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        //SwipeBackFrameLayout的子View有且只有一个，否则抛异常
+        if (getChildCount() > 1) {
+            throw new IllegalStateException("SwipeBackFrameLayout must host one child.");
+        }
+        //取得当前布局的第一个子View，也是唯一一个子View
+        //也就是activity的主要布局
+        mContentView = getChildAt(0);
+        if(getContext() instanceof FragmentActivity){
+            mActivity = (FragmentActivity) getContext();
+        }
+    }
+
+    @Override
     protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
         boolean isDrawView = child == mContentView;
         boolean drawChild = super.drawChild(canvas, child, drawingTime);
@@ -405,8 +420,14 @@ public class SwipeBackLayout extends FrameLayout {
         public int getViewHorizontalDragRange(View child) {
             if (mFragment != null) {
                 return 1;
-            } else if (mActivity != null && ((SwipeBackActivity) mActivity).swipeBackPriority()) {
-                return 1;
+            } else if (mActivity != null) {
+                if(!(mActivity instanceof SwipeBackActivity)){
+                    return 1;
+                }
+                if(((SwipeBackActivity) mActivity).swipeBackPriority()){
+                    return 1;
+                }
+
             }
             
             return 0;

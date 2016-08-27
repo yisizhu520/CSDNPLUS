@@ -35,6 +35,8 @@
             android:name=".geeknews.NewsDetailActivity"
             android:theme="@style/AppTheme.Translucent">
         </activity>
+        <activity android:name=".view.PhotoViewActivity">
+        </activity>
     </application>
 
 </manifest>
