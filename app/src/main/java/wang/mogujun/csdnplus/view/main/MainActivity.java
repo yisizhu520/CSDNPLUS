@@ -39,6 +39,7 @@ public class MainActivity extends BaseActivity implements HasNewsComponent{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getEventBus().register(this);
     }
 
     @Override
@@ -164,5 +165,12 @@ public class MainActivity extends BaseActivity implements HasNewsComponent{
     @Override
     public NewsComponent getNewsComponent() {
         return null;
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getEventBus().unregister(this);
     }
 }

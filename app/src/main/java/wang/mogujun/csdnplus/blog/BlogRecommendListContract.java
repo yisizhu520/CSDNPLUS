@@ -1,27 +1,28 @@
-package wang.mogujun.csdnplus.geeknews;
+package wang.mogujun.csdnplus.blog;
 
 import java.util.List;
 
-import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
+import wang.mogujun.csdnplus.blog.domain.model.BlogRecommendListInfo;
 import wang.mogujun.csdnplus.view.mvp.MvpRxBasePresenter;
 import wang.mogujun.uiframework.mvp.MvpView;
 
 /**
- * Created by WangJun on 2016/6/25.
+ * Created by WangJun on 2016/8/28.
  */
-public class NewsListContract {
+public class BlogRecommendListContract {
 
+    //TODO 像这类的列表view完全可以抽象出一个父类，复用
     interface View extends MvpView {
 
         void showLoading();
 
         void hideLoading();
 
-        void showNewData(List<NewsListInfo> data);
+        void showNewData(List<BlogRecommendListInfo> data);
 
         void showNewDataError(String msg);
 
-        void showMoreData(List<NewsListInfo> data);
+        void showMoreData(List<BlogRecommendListInfo> data);
 
         void showMoreDataError(String msg);
 
@@ -40,6 +41,7 @@ public class NewsListContract {
         abstract void loadMoreData();
 
     }
+
 
 
 }

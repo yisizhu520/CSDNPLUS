@@ -7,11 +7,8 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
 
-import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.R;
 import wang.mogujun.csdnplus.geeknews.domain.model.NewsListInfo;
 import wang.mogujun.csdnplus.utils.GlideUtils;
@@ -21,8 +18,6 @@ import wang.mogujun.ext.utils.DateUtils;
  * Created by WangJun on 2016/7/5.
  */
 public class NewsRecyclerAdapter extends BaseQuickAdapter<NewsListInfo> {
-
-    protected EventBus mEventBus;
 
     private NewsItemClickListener mNewsItemClickListener;
 
@@ -36,7 +31,6 @@ public class NewsRecyclerAdapter extends BaseQuickAdapter<NewsListInfo> {
     public NewsRecyclerAdapter(List<NewsListInfo> data, @NonNull NewsItemClickListener listener) {
         super(R.layout.news_common_list_item, data);
         mNewsItemClickListener = listener;
-        mEventBus = CSDNApplication.getInstance().getApplicationComponent().eventBus();
         //TODO 绑定到每一个条目岂不是更统一？
         setOnRecyclerViewItemClickListener((view, i) -> mNewsItemClickListener.onContentClick(view, mData.get(i)));
         this.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
