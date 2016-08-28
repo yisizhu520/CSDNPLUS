@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import wang.mogujun.csdnplus.blog.data.net.BlogApi;
 import wang.mogujun.csdnplus.data.net.ApiService;
 import wang.mogujun.csdnplus.geeknews.data.net.NewsApi;
 import wang.mogujun.csdnplus.user.data.net.UserApi;
@@ -24,6 +25,12 @@ public class ApiModule {
     @Provides
     NewsApi provideNewsApi() {
         return (NewsApi) createApi(NewsApi.class);
+    }
+
+    @Singleton
+    @Provides
+    BlogApi provideBlogApi() {
+        return (BlogApi) createApi(BlogApi.class);
     }
 
     private <T> T createApi(Class<T> clazz) {

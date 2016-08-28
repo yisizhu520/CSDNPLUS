@@ -1,6 +1,7 @@
 package wang.mogujun.csdnplus.blog.domain.model;
 
-import com.stevenmoon.csdnplus.app.Constants;
+
+import wang.mogujun.csdnplus.domain.DomainConstants;
 
 /**
  * Created by WangJun on 2016/5/7.
@@ -16,7 +17,7 @@ public class BlogRecommendListReqBean {
 
     private String lastId;
     private String direction;
-    private int size = Constants.CONFIG.DEFAULT_PAGE_SIZE;
+    private int size = DomainConstants.DEFAULT_PAGE_SIZE;
 
     public String getLastId() {
         return lastId;

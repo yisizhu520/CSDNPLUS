@@ -99,4 +99,10 @@ public class NewsLatestPresenter extends NewsListContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void detachView(boolean retainInstance) {
+        super.detachView(retainInstance);
+        mGetLatestNewsUseCase.unsubscribe();
+    }
 }

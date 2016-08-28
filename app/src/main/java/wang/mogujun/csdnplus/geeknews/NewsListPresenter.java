@@ -91,4 +91,9 @@ public class NewsListPresenter extends NewsListContract.Presenter {
         });
     }
 
+    @Override
+    public void detachView(boolean retainInstance) {
+        super.detachView(retainInstance);
+        mGetColumnNewsUseCase.unsubscribe();
+    }
 }

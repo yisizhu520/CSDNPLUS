@@ -14,6 +14,8 @@ import dagger.Provides;
 import wang.mogujun.csdnplus.BuildConfig;
 import wang.mogujun.csdnplus.CSDNApplication;
 import wang.mogujun.csdnplus.UIThread;
+import wang.mogujun.csdnplus.blog.data.repository.BlogDataRepository;
+import wang.mogujun.csdnplus.blog.domain.repository.BlogRepository;
 import wang.mogujun.csdnplus.data.executor.JobExecutor;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
 import wang.mogujun.csdnplus.domain.executor.ThreadExecutor;
@@ -89,7 +91,10 @@ public class ApplicationModule {
         return newsDataRepository;
     }
 
-
+    @Provides
+    BlogRepository provideBlogRepository(BlogDataRepository blogDataRepository) {
+        return blogDataRepository;
+    }
 
 
 

@@ -12,7 +12,7 @@ import wang.mogujun.uiframework.mvp.MvpView;
 public class BlogRecommendListContract {
 
     //TODO 像这类的列表view完全可以抽象出一个父类，复用
-    interface View extends MvpView {
+    public interface View extends MvpView {
 
         void showLoading();
 
@@ -34,11 +34,11 @@ public class BlogRecommendListContract {
 
     }
 
-    static abstract class Presenter extends MvpRxBasePresenter<View> {
+    public static abstract class Presenter extends MvpRxBasePresenter<View> {
 
-        abstract void loadNewData();
+        public abstract void loadNewData();
 
-        abstract void loadMoreData();
+        public abstract void loadMoreData();
 
     }
 

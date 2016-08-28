@@ -9,6 +9,7 @@ import org.greenrobot.eventbus.EventBus;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import wang.mogujun.csdnplus.blog.domain.repository.BlogRepository;
 import wang.mogujun.csdnplus.di.module.ApiModule;
 import wang.mogujun.csdnplus.di.module.ApplicationModule;
 import wang.mogujun.csdnplus.domain.executor.PostExecutionThread;
@@ -39,6 +40,8 @@ public interface ApplicationComponent {
     UserRepository userRepository();
 
     NewsRepository newsRepository();
+
+    BlogRepository blogRepository();
 
     CSDNNavigator navigator();
 

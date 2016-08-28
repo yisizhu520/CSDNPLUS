@@ -13,6 +13,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import wang.mogujun.csdnplus.R;
+import wang.mogujun.csdnplus.blog.BlogMainFragment;
 import wang.mogujun.csdnplus.di.HasNewsComponent;
 import wang.mogujun.csdnplus.di.component.NewsComponent;
 import wang.mogujun.csdnplus.event.DrawerItemClickEvent;
@@ -107,7 +108,7 @@ public class MainActivity extends BaseActivity implements HasNewsComponent{
                 break;
             case 1:
                 if (mBlogFrag == null) {
-                    mBlogFrag = NewsMainFragment.newInstance();
+                    mBlogFrag = BlogMainFragment.newInstance();
                     ft.add(R.id.main_content_container, mBlogFrag);
                 } else {
                     ft.show(mBlogFrag);

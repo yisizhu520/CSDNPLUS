@@ -1,6 +1,7 @@
 package wang.mogujun.csdnplus.blog.domain.model;
 
-import com.stevenmoon.csdnplus.app.Constants;
+
+import wang.mogujun.csdnplus.domain.DomainConstants;
 
 /**
  * Created by WangJun on 2016/5/7.
@@ -16,7 +17,7 @@ public class BlogNormalListReqBean {
 
     private int tagId;
     private int page;
-    private int pagesize = Constants.CONFIG.DEFAULT_PAGE_SIZE;
+    private int pagesize = DomainConstants.DEFAULT_PAGE_SIZE;
 
     public int getTagId() {
         return tagId;

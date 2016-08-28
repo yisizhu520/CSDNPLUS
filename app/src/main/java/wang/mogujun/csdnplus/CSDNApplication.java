@@ -10,7 +10,9 @@ import io.realm.RealmConfiguration;
 import wang.mogujun.csdnplus.data.cache.LoginPrefs;
 import wang.mogujun.csdnplus.data.cache.UserDetailPrefs;
 import wang.mogujun.csdnplus.di.component.ApplicationComponent;
+import wang.mogujun.csdnplus.di.component.BlogComponent;
 import wang.mogujun.csdnplus.di.component.DaggerApplicationComponent;
+import wang.mogujun.csdnplus.di.component.DaggerBlogComponent;
 import wang.mogujun.csdnplus.di.component.DaggerNewsComponent;
 import wang.mogujun.csdnplus.di.component.NewsComponent;
 import wang.mogujun.csdnplus.di.module.ApplicationModule;
@@ -86,6 +88,13 @@ public class CSDNApplication extends Application {
 
     public NewsComponent getNewsComponent(){
         return DaggerNewsComponent
+                .builder()
+                .applicationComponent(getApplicationComponent())
+                .build();
+    }
+
+    public BlogComponent getBlogComponent(){
+        return DaggerBlogComponent
                 .builder()
                 .applicationComponent(getApplicationComponent())
                 .build();
